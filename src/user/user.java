@@ -13,6 +13,8 @@ public class user {
  
     //Construtor
     
+    String teste;
+    
     //Atributos
     
     //Métodos
