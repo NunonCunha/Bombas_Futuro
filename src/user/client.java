@@ -9,7 +9,7 @@ package user;
  *
  * @author NCUNHA
  */
-public class client extends user{
+public class client {
     
     //Construtor
     
