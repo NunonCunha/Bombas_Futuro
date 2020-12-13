@@ -9,14 +9,41 @@ package user;
  *
  * @author NCUNHA
  */
-public class supervisor extends user{
+public class supervisor{ //Construtor
     
-    //Construtor
+      //Atributos
     
-    //Atributos
-    
-    String teste2;
-    
+      private String nome;
+      private int codigo;
+      private String role;
+      
+      
     //Métodos
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @return the codigo
+     */
+    public int getCodigo() {
+        return codigo;
+    }
+
+    /**
+     * @return the role
+     */
+    public String getRole() {
+        return role;
+    }
+
+
+      
+      
+   
     
 }
