@@ -15,6 +15,8 @@ public class supervisor extends user{
     
     //Atributos
     
+    String teste2;
+    
     //Métodos
     
 }
