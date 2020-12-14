@@ -5,49 +5,45 @@
  */
 package user;
 
+import connections.Conn;
+
 /**
  *
  * @author NCUNHA
  */
-public class bombas {
+public class bombas {//Construtor
  
-    //Construtor
+    Conn BD = new Conn ();
+    
+     //Atributos
+
           
-    private String nome;
-    private int codigo;
-    
-    
-    //Atributos
-    
-    
-
+    private int bomba;
+    private double montante;
+    private boolean emuso;
+      
+      
     //Métodos
+    
+    public void supervisao(){
+        
 
-    /**
-     * @return the nome
-     */
-    public String getNome() {
-        return nome;
+       
+       
+        
+     }
+    
+    
+ 
+    
+    
+    
+    
+    public void abastecimento(){
+        
+        
     }
 
-    /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    
 
-    /**
-     * @return the codigo
-     */
-    public int getCodigo() {
-        return codigo;
-    }
-
-    /**
-     * @param codigo the codigo to set
-     */
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
 }

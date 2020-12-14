@@ -27,7 +27,8 @@ public class Conn {
 
         
     //Método Construtor
-    public void conn (){        
+    public String conn (int valor){  
+        
                  
         try{       
             
@@ -65,6 +66,8 @@ public class Conn {
             e.printStackTrace();
             
         }
+        int i = 0;
+            return ""+i;
         
     }        
         
