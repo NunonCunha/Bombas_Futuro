@@ -151,7 +151,7 @@ public class Conn {
     //--------------------Ligação para o Log in-------------------------------------------------------------------------------------------------------------------------------------------
     
     
-    public String connGetLogin (String password, String nif){        
+    public String connGetLoginSupervisor (String password, String nif){        
                  
         try{       
             
@@ -169,8 +169,7 @@ public class Conn {
              
               this.supervisorRole = supervisorPass.getString("roles");
                 
-            }
-            
+            }            
             
             ResultSet clienteCod = stmt.executeQuery("SELECT role FROM energy_station.clientes Where nif = '"+nif+"'");
             while (clienteCod.next()) {
@@ -180,6 +179,8 @@ public class Conn {
             }
 
             System.out.println("Ligado a Base de Dados");
+            System.out.println(this.supervisorRole+" "+this.clienteRole);
+            
 
         }
         
@@ -205,6 +206,58 @@ public class Conn {
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------
         
        
+        public String connGetLoginCliente (String password, String nif){        
+                 
+        try{       
+            
+             // criação do objecto para a ligaçaõ a base de dados
+            Connection connection = DriverManager.getConnection(this.url,this.username,this.password);            
+           
+            //Criação de objecto com base na biblioteca java.sql.Statement
+            Statement stmt = connection.createStatement();  
+                        
+            //Criação de objecto pa execução de query's com base na biblioteca java.sql.ResultSet
+            ResultSet supervisorPass = stmt.executeQuery("SELECT roles FROM energy_station.controlo_acessos Where password = '"+password+"'");
+                                    
+            //Percorre a base de dados a procura da informação e retorna a mesma
+            while (supervisorPass.next()) {
+             
+              this.supervisorRole = supervisorPass.getString("roles");
+                
+            }            
+            
+            ResultSet clienteCod = stmt.executeQuery("SELECT role FROM energy_station.clientes Where nif = '"+nif+"'");
+            while (clienteCod.next()) {
+             
+                this.clienteRole = clienteCod.getString("role");
+                
+            }
+
+            System.out.println("Ligado a Base de Dados");
+            System.out.println(this.supervisorRole+" "+this.clienteRole);
+            
+
+        }
+        
+        //Caso exista algum erro, e lançada uma mensagem de excepção
+        catch (SQLException e){
+            
+            System.out.println("Não foi retornar valores");
+            
+            e.printStackTrace();
+            
+        }
+        
+        if (this.supervisorRole != null || this.clienteRole != null ){            
+            return "utilizador não encontrado";            
+        }
+        else{        
+            return this.supervisorRole+" "+ this.clienteRole;            
+        }
+        
+    } 
+        
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------    
 
     public String getNome() {
         return nome;

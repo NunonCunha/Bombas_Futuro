@@ -20,10 +20,7 @@ public class test_connections {
         
         Conn connection = new Conn();
         
-        String pass = "123456789";
-        String nif = "1071107001";
-        
-        connection.connGetLogin(pass,nif);
+
         
     }
 
