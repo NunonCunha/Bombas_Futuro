@@ -12,21 +12,29 @@ import java.sql.SQLException;
  * @author NCUNHA
  */
 public class Conn {
-    
-    //Criação do objecto          
+                  
+    //Atributos
     
     //URL da base de dados
-    private String url = "jdbc:mysql://localhost:3306/energy_station?zeroDateTimeBehavior=CONVERT_TO_NULL";
-        
+    private final String url = "jdbc:mysql://localhost:3306/energy_station?zeroDateTimeBehavior=CONVERT_TO_NULL"; 
+    
     //utilizador e password
-    private String username = "root";
-    private String password = "123456";
-                
-    //Atributos
-        
+    private final String username = "root";
+    private final String password = "123456";
+    
+    //Atributos Clientes        
     private String nome;
     private String nif;
-
+    
+    
+    //Atributos Supervisor
+    
+    //Atributos Log in
+    private String supervisorRole = "";
+    private String clienteRole = "";
+    
+    
+    
     
         
     //Métodos
@@ -37,7 +45,7 @@ public class Conn {
                  
         try{       
             
-             // criação do objecto para a ligaçaõ a base de dados
+             // criação do objecto para a ligação a base de dados
             Connection connection = DriverManager.getConnection(this.url,this.username,this.password);            
            
             //Criação de objecto com base na biblioteca java.sql.Statement
@@ -143,7 +151,7 @@ public class Conn {
     //--------------------Ligação para o Log in-------------------------------------------------------------------------------------------------------------------------------------------
     
     
-    public void connGetLogin (String user){        
+    public String connGetLogin (String password, String nif){        
                  
         try{       
             
@@ -154,19 +162,25 @@ public class Conn {
             Statement stmt = connection.createStatement();  
                         
             //Criação de objecto pa execução de query's com base na biblioteca java.sql.ResultSet
-            ResultSet rs = stmt.executeQuery("SELECT nome,nif from clientes where nif ="+nif+"");
-                        
+            ResultSet supervisorPass = stmt.executeQuery("SELECT roles FROM energy_station.controlo_acessos Where password = '"+password+"'");
+                                    
             //Percorre a base de dados a procura da informação e retorna a mesma
-            while (rs.next()) {
+            while (supervisorPass.next()) {
              
-              this.nome = rs.getString("nome");
-              this.nif = rs.getString("nif");
+              this.supervisorRole = supervisorPass.getString("roles");
+                
+            }
+            
+            
+            ResultSet clienteCod = stmt.executeQuery("SELECT role FROM energy_station.clientes Where nif = '"+nif+"'");
+            while (clienteCod.next()) {
+             
+                this.clienteRole = clienteCod.getString("role");
                 
             }
 
             System.out.println("Ligado a Base de Dados");
-            System.out.println(this.nome);
-            System.out.println(this.nif);
+
         }
         
         //Caso exista algum erro, e lançada uma mensagem de excepção
@@ -178,16 +192,18 @@ public class Conn {
             
         }
         
+        if (this.supervisorRole != null || this.clienteRole != null ){            
+            return "utilizador não encontrado";            
+        }
+        else{        
+            return this.supervisorRole+" "+ this.clienteRole;            
+        }
+        
     } 
       
     
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------
-    
-    
-    
-    
-    
-    
+        
        
 
     public String getNome() {

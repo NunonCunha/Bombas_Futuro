@@ -20,17 +20,10 @@ public class test_connections {
         
         Conn connection = new Conn();
         
-        String nif = "1477147007";
+        String pass = "123456789";
+        String nif = "1071107001";
         
-        connection.connGetClientes(nif);
-        connection.connInsertClientes();
-       
-             
-        Date date = new Date();
-        
-        SimpleDateFormat format = new SimpleDateFormat();
-        System.out.println(format.format(date));
-        
+        connection.connGetLogin(pass,nif);
         
     }
 
