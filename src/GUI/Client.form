@@ -184,9 +184,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Gasolina"/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Gasolina"/>
-      </AccessibilityProperties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbttGasolinaActionPerformed"/>
       </Events>
@@ -216,6 +213,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Nome"/>
       </Properties>
+      <Events>
+        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jlblClientPropertyChange"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbttPlasma">
       <Properties>

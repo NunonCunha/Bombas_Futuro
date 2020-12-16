@@ -20,7 +20,7 @@ public class test_connections {
         
         Conn connection = new Conn();
         
-       String nif = "1071107001";
+        String nif = "1071107001";
         String posto = "posto2";
         String energia = "Gasoleo";
         

@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import connections.Conn;
 import javax.swing.JOptionPane;
 import user.client;
 
@@ -20,6 +21,7 @@ public class Client extends javax.swing.JFrame {
     public Client() {
         initComponents();
     }
+       
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -106,6 +108,11 @@ public class Client extends javax.swing.JFrame {
         jbttGas.setText("Gás");
 
         jlblClient.setText("Nome");
+        jlblClient.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jlblClientPropertyChange(evt);
+            }
+        });
 
         jbttPlasma.setText("Plasma");
 
@@ -191,8 +198,6 @@ public class Client extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jbttGasolina.getAccessibleContext().setAccessibleName("Gasolina");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -220,6 +225,11 @@ public class Client extends javax.swing.JFrame {
     private void jbttEletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttEletActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbttEletActionPerformed
+
+    private void jlblClientPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jlblClientPropertyChange
+ 
+
+    }//GEN-LAST:event_jlblClientPropertyChange
 
     /**
      * @param args the command line arguments
