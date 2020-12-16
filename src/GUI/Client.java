@@ -31,8 +31,7 @@ public class Client extends javax.swing.JFrame {
     private final int botaoDezValor=10;    
     private int totalAbastecer;
     
-    private String energia;
-    
+    private String energia;    
     
     
     public void labelName(){
@@ -144,6 +143,11 @@ public class Client extends javax.swing.JFrame {
         });
 
         jbttGas.setText("Gás");
+        jbttGas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbttGasActionPerformed(evt);
+            }
+        });
 
         jlblClient.setText("Nome");
         jlblClient.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -153,8 +157,18 @@ public class Client extends javax.swing.JFrame {
         });
 
         jbttPlasma.setText("Plasma");
+        jbttPlasma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbttPlasmaActionPerformed(evt);
+            }
+        });
 
         jbttHidro.setText("Hidrogeneo");
+        jbttHidro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbttHidroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -261,15 +275,15 @@ public class Client extends javax.swing.JFrame {
     }//GEN-LAST:event_jlblbotaoUmActionPerformed
 
     private void jbttGasolinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttGasolinaActionPerformed
-        // TODO add your handling code here:
+        energia = "gasolina";
     }//GEN-LAST:event_jbttGasolinaActionPerformed
 
     private void jbttGasoleoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttGasoleoActionPerformed
-        // TODO add your handling code here:
+        energia = "gasoleo";
     }//GEN-LAST:event_jbttGasoleoActionPerformed
 
     private void jbttEletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttEletActionPerformed
-        // TODO add your handling code here:
+       energia = "eletricidade";
     }//GEN-LAST:event_jbttEletActionPerformed
 
     private void jlblClientPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jlblClientPropertyChange
@@ -284,10 +298,32 @@ public class Client extends javax.swing.JFrame {
 
     private void jbttAbastecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttAbastecerActionPerformed
      
-        data.getGuiCliente(totalAbastecer, energia);
-
-        JOptionPane.showConfirmDialog(rootPane, connection.getFatura());
+        //data.getGuiCliente(totalAbastecer, energia);
+        connection.connGetClientes(codigo.codigo);
+        connection.connGetData(energia);
+        connection.setQuantidadeAbastecer(Integer.toString(totalAbastecer));
+        
+        System.out.println(connection.getValorUnitario());
+        System.out.println(connection.getFatura());
+        System.out.println(connection.getNome());
+        System.out.println(connection.getApelido());
+        System.out.println(connection.getNif());
+        System.out.println(connection.getPosto());
+        System.out.println(connection.getQuantidadeAbastecer());
+        
     }//GEN-LAST:event_jbttAbastecerActionPerformed
+
+    private void jbttGasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttGasActionPerformed
+        energia = "gas";
+    }//GEN-LAST:event_jbttGasActionPerformed
+
+    private void jbttPlasmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttPlasmaActionPerformed
+        energia = "plasma";
+    }//GEN-LAST:event_jbttPlasmaActionPerformed
+
+    private void jbttHidroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttHidroActionPerformed
+        energia = "hidrogenio";
+    }//GEN-LAST:event_jbttHidroActionPerformed
 
     /**
      * @param args the command line arguments

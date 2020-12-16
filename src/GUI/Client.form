@@ -214,6 +214,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="G&#xe1;s"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbttGasActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jlblClient">
       <Properties>
@@ -230,11 +233,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Plasma"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbttPlasmaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbttHidro">
       <Properties>
         <Property name="text" type="java.lang.String" value="Hidrogeneo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbttHidroActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

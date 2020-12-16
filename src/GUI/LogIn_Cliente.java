@@ -110,10 +110,7 @@ public class LogIn_Cliente extends javax.swing.JFrame {
          JOptionPane.showMessageDialog(this, connection.getNome());
          new Client().setVisible(true);
         this.dispose();
-     }
-         
-     
-     
+     }   
      
         
     }//GEN-LAST:event_jbttLoginClienteActionPerformed

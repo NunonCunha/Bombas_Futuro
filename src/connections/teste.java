@@ -16,10 +16,16 @@ public class teste {
     
     public static void main (String[] args){
     
-        motor test = new motor();        
-        
-        test.connGetClientes(test.getCode());
-        System.out.println(test.getCode());
+    Conn connection = new Conn();
+    
+    connection.connGetClientes("1705170005");
+    connection.connGetData("plasma");
+    
+    System.out.println(connection.getValorUnitario());
+    System.out.println(connection.getFatura());
+    System.out.println(connection.getNome());
+    System.out.println(connection.getApelido());
+    System.out.println(connection.getNif());
                 
         
     }
