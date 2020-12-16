@@ -15,14 +15,15 @@ import user.client;
  */
 public class Client extends javax.swing.JFrame {
 
+       
     
     
-    
-    
-    Conn connection = new Conn();
        
     //Objectos
+    Conn connection = new Conn();
     client data = new client();
+    LogIn_Cliente codigo = new LogIn_Cliente();
+    
       
     //Atributos
     private final int botaoUmValor=1;
@@ -35,13 +36,11 @@ public class Client extends javax.swing.JFrame {
     
     
     public void labelName(){
-        //connection.connGetClientes("1705170005");
-        //jlblClient.setText(connection.getNome());
-    }
+        connection.connGetClientes(codigo.codigo);
+        jlblClient.setText(connection.getNome());
+    } 
     
-    
-    
-    
+        
     
     /**
      * Creates new form Client
@@ -284,9 +283,9 @@ public class Client extends javax.swing.JFrame {
     }//GEN-LAST:event_jlblbotaoDezActionPerformed
 
     private void jbttAbastecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttAbastecerActionPerformed
-          
+     
         data.getGuiCliente(totalAbastecer, energia);
-        jlblClient.setText(connection.getNome());
+
         JOptionPane.showConfirmDialog(rootPane, connection.getFatura());
     }//GEN-LAST:event_jbttAbastecerActionPerformed
 

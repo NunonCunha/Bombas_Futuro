@@ -18,9 +18,9 @@ public class LogIn_Cliente extends javax.swing.JFrame {
 
     
     
-    Conn connection = new Conn();
+    Conn connection = new Conn();   
     
-    
+     static String codigo;
     
     
     
@@ -81,11 +81,23 @@ public class LogIn_Cliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbttLoginClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttLoginClienteActionPerformed
-   
-     connection.connGetClientes(jtxtLoginCliente.getText());
-     JOptionPane.showMessageDialog(this, connection.getNome());
      
-     new Client().setVisible(true);
+     codigo = jtxtLoginCliente.getText();
+     
+     connection.connGetClientes(codigo);
+     //JOptionPane.showMessageDialog(this, connection.getNome());  
+     
+     if(connection.getNome() == null){
+         JOptionPane.showMessageDialog(this, "Sem registo");
+     }
+     else{
+         JOptionPane.showMessageDialog(this, connection.getNome());
+         new Client().setVisible(true);
+        this.dispose();
+     }
+         
+     
+     
      
         
     }//GEN-LAST:event_jbttLoginClienteActionPerformed
