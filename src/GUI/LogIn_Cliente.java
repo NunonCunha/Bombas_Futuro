@@ -5,19 +5,34 @@
  */
 package GUI;
 
+
+import connections.Conn;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author NCUNHA
  */
 public class LogIn_Cliente extends javax.swing.JFrame {
 
+    
+    
+    Conn connection = new Conn();
+    
+    
+    
+    
+    
+    
     /**
      * Creates new form LogIn_Cliente
      */
     public LogIn_Cliente() {
         initComponents();
     }
-
+  
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +42,53 @@ public class LogIn_Cliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jtxtLoginCliente = new javax.swing.JTextField();
+        jbttLoginCliente = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jtxtLoginCliente.setText("jTextField1");
+
+        jbttLoginCliente.setText("jButton1");
+        jbttLoginCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbttLoginClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbttLoginCliente)
+                    .addComponent(jtxtLoginCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jtxtLoginCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(jbttLoginCliente)
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbttLoginClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttLoginClienteActionPerformed
+   
+     connection.connGetClientes(jtxtLoginCliente.getText());
+     JOptionPane.showMessageDialog(this, connection.getNome());
+     
+     new Client().setVisible(true);
+     
+        
+    }//GEN-LAST:event_jbttLoginClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +126,7 @@ public class LogIn_Cliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jbttLoginCliente;
+    private javax.swing.JTextField jtxtLoginCliente;
     // End of variables declaration//GEN-END:variables
 }

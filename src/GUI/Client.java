@@ -15,13 +15,42 @@ import user.client;
  */
 public class Client extends javax.swing.JFrame {
 
+    
+    
+    
+    
+    Conn connection = new Conn();
+       
+    //Objectos
+    client data = new client();
+      
+    //Atributos
+    private final int botaoUmValor=1;
+    private final int botaoCincoValor=5;
+    private final int botaoDezValor=10;    
+    private int totalAbastecer;
+    
+    private String energia;
+    
+    
+    
+    public void labelName(){
+        //connection.connGetClientes("1705170005");
+        //jlblClient.setText(connection.getNome());
+    }
+    
+    
+    
+    
+    
     /**
      * Creates new form Client
      */
     public Client() {
+
         initComponents();
-    }
-       
+        labelName();
+    }       
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,12 +63,12 @@ public class Client extends javax.swing.JFrame {
 
         jlblApp = new javax.swing.JLabel();
         jbttEncher = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jlblbotaoUm = new javax.swing.JButton();
+        jlblbotaoCinco = new javax.swing.JButton();
+        jlblbotaoDez = new javax.swing.JButton();
         jftxtfieldOutput = new javax.swing.JFormattedTextField();
         jbttLimpar = new javax.swing.JButton();
-        jbttAbs = new javax.swing.JButton();
+        jbttAbastecer = new javax.swing.JButton();
         jbttGasolina = new javax.swing.JButton();
         jbttGasoleo = new javax.swing.JButton();
         jbttElet = new javax.swing.JButton();
@@ -57,32 +86,42 @@ public class Client extends javax.swing.JFrame {
         jbttEncher.setText("Encher");
         jbttEncher.setToolTipText("");
 
-        jButton2.setText("1€");
-        jButton2.setToolTipText("");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jlblbotaoUm.setText("1€");
+        jlblbotaoUm.setToolTipText("");
+        jlblbotaoUm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jlblbotaoUmActionPerformed(evt);
             }
         });
 
-        jButton3.setText("5€");
-        jButton3.setToolTipText("");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jlblbotaoCinco.setText("5€");
+        jlblbotaoCinco.setToolTipText("");
+        jlblbotaoCinco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jlblbotaoCincoActionPerformed(evt);
             }
         });
 
-        jButton4.setText("10€");
-        jButton4.setToolTipText("");
+        jlblbotaoDez.setText("10€");
+        jlblbotaoDez.setToolTipText("");
+        jlblbotaoDez.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jlblbotaoDezActionPerformed(evt);
+            }
+        });
 
         jftxtfieldOutput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jftxtfieldOutput.setToolTipText("");
 
         jbttLimpar.setText("Limpar");
 
-        jbttAbs.setText("Abastecer");
-        jbttAbs.setToolTipText("");
+        jbttAbastecer.setText("Abastecer");
+        jbttAbastecer.setToolTipText("");
+        jbttAbastecer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbttAbastecerActionPerformed(evt);
+            }
+        });
 
         jbttGasolina.setText("Gasolina");
         jbttGasolina.addActionListener(new java.awt.event.ActionListener() {
@@ -134,18 +173,18 @@ public class Client extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jftxtfieldOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jButton2)
+                                        .addComponent(jlblbotaoUm)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton3)
+                                        .addComponent(jlblbotaoCinco)
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jbttElet)
-                                            .addComponent(jButton4)
+                                            .addComponent(jlblbotaoDez)
                                             .addComponent(jbttGas, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jbttAbs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jbttAbastecer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jbttLimpar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jbttEncher, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,38 +223,43 @@ public class Client extends javax.swing.JFrame {
                     .addComponent(jbttHidro))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton2)
+                    .addComponent(jlblbotaoCinco)
+                    .addComponent(jlblbotaoDez)
+                    .addComponent(jlblbotaoUm)
                     .addComponent(jbttEncher))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbttLimpar)
                         .addGap(18, 18, 18)
-                        .addComponent(jbttAbs))
+                        .addComponent(jbttAbastecer))
                     .addComponent(jftxtfieldOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
+        jlblClient.getAccessibleContext().setAccessibleName("");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-    private int botao;
-    private final int valor=1;
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    
+
+    
+    
+    private void jlblbotaoCincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlblbotaoCincoActionPerformed
+         totalAbastecer +=botaoCincoValor;
+        
+         JOptionPane.showConfirmDialog(rootPane, totalAbastecer); 
+    }//GEN-LAST:event_jlblbotaoCincoActionPerformed
+
+    
+    private void jlblbotaoUmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlblbotaoUmActionPerformed
      
-            botao +=valor;
+         totalAbastecer +=botaoUmValor;
         
-         JOptionPane.showConfirmDialog(rootPane, botao);
+         JOptionPane.showConfirmDialog(rootPane, totalAbastecer);        
         
-        
-        
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jlblbotaoUmActionPerformed
 
     private void jbttGasolinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttGasolinaActionPerformed
         // TODO add your handling code here:
@@ -230,9 +274,21 @@ public class Client extends javax.swing.JFrame {
     }//GEN-LAST:event_jbttEletActionPerformed
 
     private void jlblClientPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jlblClientPropertyChange
- 
-
+        
     }//GEN-LAST:event_jlblClientPropertyChange
+
+    private void jlblbotaoDezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlblbotaoDezActionPerformed
+        totalAbastecer +=botaoDezValor;
+        
+         JOptionPane.showConfirmDialog(rootPane, totalAbastecer);
+    }//GEN-LAST:event_jlblbotaoDezActionPerformed
+
+    private void jbttAbastecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttAbastecerActionPerformed
+          
+        data.getGuiCliente(totalAbastecer, energia);
+        jlblClient.setText(connection.getNome());
+        JOptionPane.showConfirmDialog(rootPane, connection.getFatura());
+    }//GEN-LAST:event_jbttAbastecerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,10 +326,7 @@ public class Client extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jbttAbs;
+    private javax.swing.JButton jbttAbastecer;
     private javax.swing.JButton jbttElet;
     private javax.swing.JButton jbttEncher;
     private javax.swing.JButton jbttGas;
@@ -285,5 +338,8 @@ public class Client extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jftxtfieldOutput;
     private javax.swing.JLabel jlblApp;
     private javax.swing.JLabel jlblClient;
+    private javax.swing.JButton jlblbotaoCinco;
+    private javax.swing.JButton jlblbotaoDez;
+    private javax.swing.JButton jlblbotaoUm;
     // End of variables declaration//GEN-END:variables
 }

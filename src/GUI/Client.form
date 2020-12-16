@@ -37,13 +37,13 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jftxtfieldOutput" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jlblbotaoUm" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jlblbotaoCinco" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jbttElet" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jlblbotaoDez" min="-2" max="-2" attributes="0"/>
                                           <Component id="jbttGas" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -51,7 +51,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jbttAbs" max="32767" attributes="0"/>
+                                      <Component id="jbttAbastecer" max="32767" attributes="0"/>
                                       <Component id="jbttLimpar" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -105,9 +105,9 @@
               </Group>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlblbotaoCinco" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlblbotaoDez" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlblbotaoUm" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbttEncher" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -115,7 +115,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jbttLimpar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jbttAbs" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbttAbastecer" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jftxtfieldOutput" min="-2" pref="83" max="-2" attributes="0"/>
               </Group>
@@ -139,29 +139,32 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="jlblbotaoUm">
       <Properties>
         <Property name="text" type="java.lang.String" value="1&#x20ac;"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jlblbotaoUmActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="jlblbotaoCinco">
       <Properties>
         <Property name="text" type="java.lang.String" value="5&#x20ac;"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jlblbotaoCincoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton4">
+    <Component class="javax.swing.JButton" name="jlblbotaoDez">
       <Properties>
         <Property name="text" type="java.lang.String" value="10&#x20ac;"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jlblbotaoDezActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jftxtfieldOutput">
       <Properties>
@@ -174,11 +177,14 @@
         <Property name="text" type="java.lang.String" value="Limpar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jbttAbs">
+    <Component class="javax.swing.JButton" name="jbttAbastecer">
       <Properties>
         <Property name="text" type="java.lang.String" value="Abastecer"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbttAbastecerActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbttGasolina">
       <Properties>
@@ -213,6 +219,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Nome"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
       <Events>
         <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jlblClientPropertyChange"/>
       </Events>

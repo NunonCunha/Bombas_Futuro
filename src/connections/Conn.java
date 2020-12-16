@@ -18,7 +18,7 @@ public class Conn {
     //URL da base de dados
     private final String url = "jdbc:mysql://localhost:3306/energy_station?zeroDateTimeBehavior=CONVERT_TO_NULL"; 
     
-    //utilizador e password
+    //utilizador e password da base de dados
     private final String username = "root";
     private final String password = "123456";
     
@@ -26,7 +26,7 @@ public class Conn {
     private String nome;
     private String apelido;
     private String nif;
-    private String posto;
+    //private String posto;
     private String tipoEnergia;
     private String valorUnitario;
     private String fatura;
@@ -46,7 +46,7 @@ public class Conn {
     
     //------------------Ligação para retorno de informação para clientes---------------------------------------------------------------------------------------------------------------------------------------------
         
-    public void connGetClientes (String nif, String posto, String energia){        
+    public void connGetClientes (String nif){        
                  
         try{       
             
@@ -68,6 +68,7 @@ public class Conn {
                 
             }
             
+            /*
             ResultSet postoResult = stmt.executeQuery("SELECT posto from energy_station.postos where posto ='"+posto+"'");
                         
             //Percorre a base de dados a procura da informação e retorna a mesma
@@ -76,6 +77,7 @@ public class Conn {
               this.posto = postoResult.getString("posto");
                             
             }
+            
             
             ResultSet energiaResult = stmt.executeQuery("SELECT tipo_energia,valor_unidade from energy_station.energia where tipo_energia ='"+energia+"'");
                         
@@ -86,7 +88,7 @@ public class Conn {
               this.valorUnitario = energiaResult.getString("valor_unidade");
                 
             }
-            
+            */
             ResultSet vendaResult = stmt.executeQuery("SELECT fatura_nr FROM energy_station.vendas ORDER BY fatura_nr DESC LIMIT 1");
                         
             //Percorre a base de dados a procura da informação e retorna a mesma
@@ -131,11 +133,11 @@ public class Conn {
     public String getNif() {
         return nif;
     }  
-
+/*
     public String getPosto() {
         return posto;
     }   
-
+*/
     public String getTipoEnergia() {
         return tipoEnergia;
     }    
