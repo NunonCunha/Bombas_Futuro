@@ -20,7 +20,19 @@ public class test_connections {
         
         Conn connection = new Conn();
         
-
+       String nif = "1071107001";
+        String posto = "posto2";
+        String energia = "Gasoleo";
+        
+        
+        connection.connGetClientes(nif, posto, energia);
+        
+        System.out.println(connection.getNome());
+        connection.getApelido();
+        connection.getPosto();
+        connection.getTipoEnergia();
+        connection.getValorUnitario();
+        connection.getFatura();
         
     }
 

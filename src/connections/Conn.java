@@ -24,7 +24,12 @@ public class Conn {
     
     //Atributos Clientes        
     private String nome;
+    private String apelido;
     private String nif;
+    private String posto;
+    private String tipoEnergia;
+    private String valorUnitario;
+    private String fatura;
     
     
     //Atributos Supervisor
@@ -39,9 +44,9 @@ public class Conn {
         
     //Métodos
     
-    //---------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //------------------Ligação para retorno de informação para clientes---------------------------------------------------------------------------------------------------------------------------------------------
         
-    public void connGetClientes (String nif){        
+    public void connGetClientes (String nif, String posto, String energia){        
                  
         try{       
             
@@ -52,31 +57,97 @@ public class Conn {
             Statement stmt = connection.createStatement();  
                         
             //Criação de objecto pa execução de query's com base na biblioteca java.sql.ResultSet
-            ResultSet rs = stmt.executeQuery("SELECT nome,nif from clientes where nif ="+nif+"");
+            ResultSet clienteResult = stmt.executeQuery("SELECT nome,apelido,nif from energy_station.clientes where nif ="+nif+"");
                         
             //Percorre a base de dados a procura da informação e retorna a mesma
-            while (rs.next()) {
+            while (clienteResult.next()) {
              
-              this.nome = rs.getString("nome");
-              this.nif = rs.getString("nif");
+              this.nome = clienteResult.getString("nome");
+              this.apelido = clienteResult.getString("apelido");
+              this.nif = clienteResult.getString("nif");
                 
             }
-
+            
+            ResultSet postoResult = stmt.executeQuery("SELECT posto from energy_station.postos where posto ='"+posto+"'");
+                        
+            //Percorre a base de dados a procura da informação e retorna a mesma
+            while (postoResult.next()) {
+             
+              this.posto = postoResult.getString("posto");
+                            
+            }
+            
+            ResultSet energiaResult = stmt.executeQuery("SELECT tipo_energia,valor_unidade from energy_station.energia where tipo_energia ='"+energia+"'");
+                        
+            //Percorre a base de dados a procura da informação e retorna a mesma
+            while (energiaResult.next()) {
+             
+              this.tipoEnergia = energiaResult.getString("tipo_energia");
+              this.valorUnitario = energiaResult.getString("valor_unidade");
+                
+            }
+            
+            ResultSet vendaResult = stmt.executeQuery("SELECT fatura_nr FROM energy_station.vendas ORDER BY fatura_nr DESC LIMIT 1");
+                        
+            //Percorre a base de dados a procura da informação e retorna a mesma
+            while (vendaResult.next()) {
+             
+              this.fatura = vendaResult.getString("fatura_nr");
+              
+                
+            }
+            
+            /*
             System.out.println("Ligado a Base de Dados");
             System.out.println(this.nome);
+            System.out.println(this.apelido);
             System.out.println(this.nif);
+            System.out.println(this.posto);
+            System.out.println(this.tipoEnergia);
+            System.out.println(this.valorUnitario);
+            System.out.println(this.fatura);
+            */
         }
         
         //Caso exista algum erro, e lançada uma mensagem de excepção
         catch (SQLException e){
             
-            System.out.println("Não foi retornar valores");
+            System.out.println("Não foi possível retornar valores");
             
             e.printStackTrace();
             
         }
         
     }   
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getApelido() {
+        return apelido;
+    }   
+
+    public String getNif() {
+        return nif;
+    }  
+
+    public String getPosto() {
+        return posto;
+    }   
+
+    public String getTipoEnergia() {
+        return tipoEnergia;
+    }    
+
+    public String getValorUnitario() {
+        return valorUnitario;
+    }    
+
+    public String getFatura() {
+        return fatura;
+    }
+    
     
     //------------------Inserir informação---------------------------------------------------------------------------------------------------------------------------------------------
     
@@ -258,24 +329,6 @@ public class Conn {
     } 
         
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------    
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNif() {
-        return nif;
-    }
-
-    public void setNif(String nif) {
-        this.nif = nif;
-    }
-
-
-    
+   
         
 }
