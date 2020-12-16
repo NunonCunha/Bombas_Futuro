@@ -204,13 +204,16 @@ public class Client extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    private int botao;
+    private final int valor=1;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       /* client valor = new client();
+     
+            botao +=valor;
         
-        valor.setTotalAbastecer(1);
+         JOptionPane.showConfirmDialog(rootPane, botao);
         
-        JOptionPane.showMessageDialog(rootPane, valor.getTotalAbastecer());*/
+        
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
