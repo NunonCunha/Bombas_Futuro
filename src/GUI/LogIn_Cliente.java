@@ -44,40 +44,56 @@ public class LogIn_Cliente extends javax.swing.JFrame {
 
         jtxtLoginCliente = new javax.swing.JTextField();
         jbttLoginCliente = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 51, 255));
+        setSize(new java.awt.Dimension(0, 0));
 
-        jtxtLoginCliente.setText("jTextField1");
+        jtxtLoginCliente.setToolTipText("");
+        jtxtLoginCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtLoginClienteActionPerformed(evt);
+            }
+        });
 
-        jbttLoginCliente.setText("jButton1");
+        jbttLoginCliente.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.foreground"));
+        jbttLoginCliente.setText("Login");
         jbttLoginCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbttLoginClienteActionPerformed(evt);
             }
         });
 
+        jLabel1.setText("NIF:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
+                .addGap(112, 112, 112)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbttLoginCliente)
-                    .addComponent(jtxtLoginCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(165, Short.MAX_VALUE))
+                    .addComponent(jbttLoginCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxtLoginCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jtxtLoginCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(223, 223, 223)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtxtLoginCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbttLoginCliente)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbttLoginClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttLoginClienteActionPerformed
@@ -101,6 +117,10 @@ public class LogIn_Cliente extends javax.swing.JFrame {
      
         
     }//GEN-LAST:event_jbttLoginClienteActionPerformed
+
+    private void jtxtLoginClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtLoginClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtLoginClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,6 +158,7 @@ public class LogIn_Cliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton jbttLoginCliente;
     private javax.swing.JTextField jtxtLoginCliente;
     // End of variables declaration//GEN-END:variables
