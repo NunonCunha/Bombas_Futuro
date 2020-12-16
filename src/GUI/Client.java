@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import javax.swing.JOptionPane;
+import user.client;
+
 /**
  *
  * @author NCUNHA
@@ -27,32 +30,38 @@ public class Client extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        choice1 = new java.awt.Choice();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jlblApp = new javax.swing.JLabel();
+        jbttEncher = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jftxtfieldOutput = new javax.swing.JFormattedTextField();
+        jbttLimpar = new javax.swing.JButton();
+        jbttAbs = new javax.swing.JButton();
+        jbttGasolina = new javax.swing.JButton();
+        jbttGasoleo = new javax.swing.JButton();
+        jbttElet = new javax.swing.JButton();
+        jbttGas = new javax.swing.JButton();
+        jlblClient = new javax.swing.JLabel();
+        jbttPlasma = new javax.swing.JButton();
+        jbttHidro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Cliente");
+        jlblApp.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlblApp.setText("BOFU");
 
-        jButton1.setText("Encher");
-        jButton1.setToolTipText("");
+        jbttEncher.setText("Encher");
+        jbttEncher.setToolTipText("");
 
         jButton2.setText("1€");
         jButton2.setToolTipText("");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("5€");
         jButton3.setToolTipText("");
@@ -65,89 +74,124 @@ public class Client extends javax.swing.JFrame {
         jButton4.setText("10€");
         jButton4.setToolTipText("");
 
-        jFormattedTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jFormattedTextField1.setText("Total");
-        jFormattedTextField1.setToolTipText("");
+        jftxtfieldOutput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jftxtfieldOutput.setToolTipText("");
 
-        jButton5.setText("Limpar");
+        jbttLimpar.setText("Limpar");
 
-        jButton6.setText("Abastecer");
-        jButton6.setToolTipText("");
+        jbttAbs.setText("Abastecer");
+        jbttAbs.setToolTipText("");
 
-        jButton7.setText("jButton7");
+        jbttGasolina.setText("Gasolina");
+        jbttGasolina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbttGasolinaActionPerformed(evt);
+            }
+        });
 
-        jButton8.setText("jButton8");
+        jbttGasoleo.setText("Gasóleo");
+        jbttGasoleo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbttGasoleoActionPerformed(evt);
+            }
+        });
 
-        jButton9.setText("jButton9");
+        jbttElet.setText("Eletricidade");
+        jbttElet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbttEletActionPerformed(evt);
+            }
+        });
 
-        jButton10.setText("jButton10");
+        jbttGas.setText("Gás");
 
-        jLabel2.setText("jLabel2");
+        jlblClient.setText("Nome");
+
+        jbttPlasma.setText("Plasma");
+
+        jbttHidro.setText("Hidrogeneo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jButton2)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton3)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton4)
-                            .addGap(39, 39, 39)
-                            .addComponent(jButton1))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton8)
-                                .addComponent(jButton7))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(87, 87, 87))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlblApp)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jftxtfieldOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jButton2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton3)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jbttElet)
+                                            .addComponent(jButton4)
+                                            .addComponent(jbttGas, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jbttAbs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jbttLimpar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jbttEncher, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(2, 2, 2))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jlblClient, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jbttGasolina)
+                                        .addGap(202, 202, 202)
+                                        .addComponent(jbttPlasma, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(49, 49, 49))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbttGasoleo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbttHidro)
+                        .addGap(81, 81, 81))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel1)
+                .addComponent(jlblApp)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(jlblClient)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9)
-                    .addComponent(jButton7))
+                    .addComponent(jbttElet)
+                    .addComponent(jbttGasolina)
+                    .addComponent(jbttPlasma))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton10))
+                    .addComponent(jbttGasoleo)
+                    .addComponent(jbttGas)
+                    .addComponent(jbttHidro))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jbttEncher))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton5)
+                        .addComponent(jbttLimpar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6))
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jbttAbs))
+                    .addComponent(jftxtfieldOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
+
+        jbttGasolina.getAccessibleContext().setAccessibleName("Gasolina");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -155,6 +199,27 @@ public class Client extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       /* client valor = new client();
+        
+        valor.setTotalAbastecer(1);
+        
+        JOptionPane.showMessageDialog(rootPane, valor.getTotalAbastecer());*/
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jbttGasolinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttGasolinaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbttGasolinaActionPerformed
+
+    private void jbttGasoleoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttGasoleoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbttGasoleoActionPerformed
+
+    private void jbttEletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttEletActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbttEletActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,19 +257,20 @@ public class Client extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Choice choice1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jbttAbs;
+    private javax.swing.JButton jbttElet;
+    private javax.swing.JButton jbttEncher;
+    private javax.swing.JButton jbttGas;
+    private javax.swing.JButton jbttGasoleo;
+    private javax.swing.JButton jbttGasolina;
+    private javax.swing.JButton jbttHidro;
+    private javax.swing.JButton jbttLimpar;
+    private javax.swing.JButton jbttPlasma;
+    private javax.swing.JFormattedTextField jftxtfieldOutput;
+    private javax.swing.JLabel jlblApp;
+    private javax.swing.JLabel jlblClient;
     // End of variables declaration//GEN-END:variables
 }
