@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author NCUNHA
+ * @author Grupo A
  */
 public class Client extends javax.swing.JFrame {
        
@@ -31,7 +31,6 @@ public class Client extends javax.swing.JFrame {
     private final int botaoDezValor=10;
     private int botaoAtestar;
     private int totalAbastecer;  
-    private int totalPagar;
     private String energia;    
         
     
@@ -103,7 +102,7 @@ public class Client extends javax.swing.JFrame {
         setTitle("Main");
 
         jlblApp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jlblApp.setText("BOFU");
+        jlblApp.setIcon(new javax.swing.ImageIcon("C:\\Users\\NCUNHA\\Desktop\\ATLÂNTICA\\2º Ano\\1º SEMESTRE\\LINGUAGEM DE PROGRAMAÇÃO\\Trabalho2_Modelo4_Type3\\Capture (1).png")); // NOI18N
 
         jbttAtestar.setText("Atestar");
         jbttAtestar.setToolTipText("");
@@ -181,6 +180,7 @@ public class Client extends javax.swing.JFrame {
         });
 
         jlblClient.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlblClient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblClient.setText("Nome");
         jlblClient.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -210,55 +210,52 @@ public class Client extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(241, 241, 241)
-                .addComponent(jlblClient, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(148, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(305, 305, 305)
-                        .addComponent(jlblApp))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jbttGasoleo)
+                                .addComponent(jbttGasolina, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGap(101, 101, 101)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jbttPlasma, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jbttHidro, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jbttGas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jbttElet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jbttGasoleo)
-                                        .addComponent(jbttGasolina, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addGap(101, 101, 101)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jbttPlasma, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jbttHidro, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jbttGas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jbttElet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jbttbotaoUm)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jbttbotaoCinco)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jbttbotaoDez))
-                                        .addComponent(jScrollPane1))
-                                    .addGap(33, 33, 33)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jbttAtestar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jbttLimpar))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(jbttAbastecer, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(141, Short.MAX_VALUE))
+                                    .addComponent(jbttbotaoUm)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jbttbotaoCinco)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jbttbotaoDez))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(33, 33, 33)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jbttAtestar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbttLimpar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jbttAbastecer, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jlblClient, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(jlblApp)))
+                .addGap(141, 141, 141))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(25, 25, 25)
                 .addComponent(jlblApp)
-                .addGap(32, 32, 32)
+                .addGap(35, 35, 35)
                 .addComponent(jlblClient)
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -283,7 +280,7 @@ public class Client extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(jbttLimpar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jbttAbastecer, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
@@ -291,6 +288,7 @@ public class Client extends javax.swing.JFrame {
         jlblClient.getAccessibleContext().setAccessibleName("");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -304,8 +302,7 @@ public class Client extends javax.swing.JFrame {
         areaCliente(energia, totalAbastecer);
         
         jbttAtestar.setEnabled(false);
-        
-         JOptionPane.showConfirmDialog(rootPane, totalAbastecer); 
+
     }//GEN-LAST:event_jbttbotaoCincoActionPerformed
 
     
@@ -314,9 +311,7 @@ public class Client extends javax.swing.JFrame {
         
         areaCliente(energia, totalAbastecer);
         
-        jbttAtestar.setEnabled(false);
-        
-         JOptionPane.showConfirmDialog(rootPane, totalAbastecer);        
+        jbttAtestar.setEnabled(false);     
         
     }//GEN-LAST:event_jbttbotaoUmActionPerformed
 
@@ -368,7 +363,7 @@ public class Client extends javax.swing.JFrame {
         
         jbttAtestar.setEnabled(false);
         
-         JOptionPane.showConfirmDialog(rootPane, totalAbastecer);
+
     }//GEN-LAST:event_jbttbotaoDezActionPerformed
 
     private void jbttAbastecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttAbastecerActionPerformed
@@ -381,6 +376,11 @@ public class Client extends javax.swing.JFrame {
         connection.insertVendas();        
         connection.connInsertClientes();
         
+        JOptionPane.showMessageDialog(this, "Obrigado por utilizar os nossos serviços");
+        
+        new LogIn_Cliente().setVisible(true);
+        this.dispose();
+    
     }//GEN-LAST:event_jbttAbastecerActionPerformed
 
     private void jbttGasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttGasActionPerformed
@@ -442,8 +442,7 @@ public class Client extends javax.swing.JFrame {
         jbttHidro.setEnabled(true);
         jbttGas.setEnabled(true);
         
-        disableButtons();
-        
+        disableButtons();      
         
     }//GEN-LAST:event_jbttLimparActionPerformed
 
