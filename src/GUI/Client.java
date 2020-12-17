@@ -6,6 +6,7 @@
 package GUI;
 
 import connections.Conn;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import user.client;
 
@@ -14,32 +15,32 @@ import user.client;
  * @author NCUNHA
  */
 public class Client extends javax.swing.JFrame {
-
-       
-    
-    
        
     //Objectos
     Conn connection = new Conn();
-    client data = new client();
+    //client data = new client();
     LogIn_Cliente codigo = new LogIn_Cliente();
+    
+    //Ramdom para atestar
+    Random rand = new Random();
     
       
     //Atributos
     private final int botaoUmValor=1;
     private final int botaoCincoValor=5;
-    private final int botaoDezValor=10;    
-    private int totalAbastecer;
-    
+    private final int botaoDezValor=10;
+    private int botaoAtestar;
+    private int totalAbastecer;  
+    private int totalPagar;
     private String energia;    
-    
+        
     
     public void labelName(){
+        //objecto para retornar o codigo de log in do cliente
         connection.connGetClientes(codigo.codigo);
-        jlblClient.setText(connection.getNome());
-    } 
-    
-        
+        jlblClient.setText("Bem-Vindo/a "+connection.getNome()+" "+connection.getApelido());
+    }     
+      
     
     /**
      * Creates new form Client
@@ -60,11 +61,10 @@ public class Client extends javax.swing.JFrame {
     private void initComponents() {
 
         jlblApp = new javax.swing.JLabel();
-        jbttEncher = new javax.swing.JButton();
-        jlblbotaoUm = new javax.swing.JButton();
-        jlblbotaoCinco = new javax.swing.JButton();
-        jlblbotaoDez = new javax.swing.JButton();
-        jftxtfieldOutput = new javax.swing.JFormattedTextField();
+        jbttAtestar = new javax.swing.JButton();
+        jbttbotaoUm = new javax.swing.JButton();
+        jbttbotaoCinco = new javax.swing.JButton();
+        jbttbotaoDez = new javax.swing.JButton();
         jbttLimpar = new javax.swing.JButton();
         jbttAbastecer = new javax.swing.JButton();
         jbttGasolina = new javax.swing.JButton();
@@ -74,44 +74,53 @@ public class Client extends javax.swing.JFrame {
         jlblClient = new javax.swing.JLabel();
         jbttPlasma = new javax.swing.JButton();
         jbttHidro = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtextAreaCliente = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main");
 
-        jlblApp.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlblApp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jlblApp.setText("BOFU");
 
-        jbttEncher.setText("Encher");
-        jbttEncher.setToolTipText("");
-
-        jlblbotaoUm.setText("1€");
-        jlblbotaoUm.setToolTipText("");
-        jlblbotaoUm.addActionListener(new java.awt.event.ActionListener() {
+        jbttAtestar.setText("Atestar");
+        jbttAtestar.setToolTipText("");
+        jbttAtestar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jlblbotaoUmActionPerformed(evt);
+                jbttAtestarActionPerformed(evt);
             }
         });
 
-        jlblbotaoCinco.setText("5€");
-        jlblbotaoCinco.setToolTipText("");
-        jlblbotaoCinco.addActionListener(new java.awt.event.ActionListener() {
+        jbttbotaoUm.setText("1 Quantidade");
+        jbttbotaoUm.setToolTipText("");
+        jbttbotaoUm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jlblbotaoCincoActionPerformed(evt);
+                jbttbotaoUmActionPerformed(evt);
             }
         });
 
-        jlblbotaoDez.setText("10€");
-        jlblbotaoDez.setToolTipText("");
-        jlblbotaoDez.addActionListener(new java.awt.event.ActionListener() {
+        jbttbotaoCinco.setText("5 Quantidades");
+        jbttbotaoCinco.setToolTipText("");
+        jbttbotaoCinco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jlblbotaoDezActionPerformed(evt);
+                jbttbotaoCincoActionPerformed(evt);
             }
         });
 
-        jftxtfieldOutput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jftxtfieldOutput.setToolTipText("");
+        jbttbotaoDez.setText("10 Quantidades");
+        jbttbotaoDez.setToolTipText("");
+        jbttbotaoDez.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbttbotaoDezActionPerformed(evt);
+            }
+        });
 
         jbttLimpar.setText("Limpar");
+        jbttLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbttLimparActionPerformed(evt);
+            }
+        });
 
         jbttAbastecer.setText("Abastecer");
         jbttAbastecer.setToolTipText("");
@@ -149,6 +158,7 @@ public class Client extends javax.swing.JFrame {
             }
         });
 
+        jlblClient.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jlblClient.setText("Nome");
         jlblClient.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -163,68 +173,72 @@ public class Client extends javax.swing.JFrame {
             }
         });
 
-        jbttHidro.setText("Hidrogeneo");
+        jbttHidro.setText("Hidrogenio");
         jbttHidro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbttHidroActionPerformed(evt);
             }
         });
 
+        jtextAreaCliente.setColumns(20);
+        jtextAreaCliente.setRows(5);
+        jScrollPane1.setViewportView(jtextAreaCliente);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(241, 241, 241)
+                .addComponent(jlblClient, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlblApp)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(305, 305, 305)
+                        .addComponent(jlblApp))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jftxtfieldOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jlblbotaoUm)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jlblbotaoCinco)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jbttElet)
-                                            .addComponent(jlblbotaoDez)
-                                            .addComponent(jbttGas, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(128, 128, 128)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jbttAbastecer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jbttLimpar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jbttEncher, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(2, 2, 2))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jlblClient, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jbttGasolina)
-                                        .addGap(202, 202, 202)
-                                        .addComponent(jbttPlasma, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(49, 49, 49))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbttGasoleo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbttHidro)
-                        .addGap(81, 81, 81))))
+                                        .addComponent(jbttGasoleo)
+                                        .addComponent(jbttGasolina, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGap(101, 101, 101)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jbttPlasma, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jbttHidro, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jbttGas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jbttElet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jbttbotaoUm)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jbttbotaoCinco)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jbttbotaoDez))
+                                        .addComponent(jScrollPane1))
+                                    .addGap(33, 33, 33)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jbttAtestar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jbttLimpar))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jbttAbastecer, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(28, 28, 28)
                 .addComponent(jlblApp)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(jlblClient)
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbttElet)
                     .addComponent(jbttGasolina)
@@ -236,18 +250,20 @@ public class Client extends javax.swing.JFrame {
                     .addComponent(jbttHidro))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblbotaoCinco)
-                    .addComponent(jlblbotaoDez)
-                    .addComponent(jlblbotaoUm)
-                    .addComponent(jbttEncher))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jbttbotaoCinco)
+                    .addComponent(jbttbotaoDez)
+                    .addComponent(jbttbotaoUm)
+                    .addComponent(jbttAtestar))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbttLimpar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbttAbastecer))
-                    .addComponent(jftxtfieldOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jbttLimpar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(jbttAbastecer, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
 
         jlblClient.getAccessibleContext().setAccessibleName("");
@@ -259,71 +275,127 @@ public class Client extends javax.swing.JFrame {
 
     
     
-    private void jlblbotaoCincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlblbotaoCincoActionPerformed
+    private void jbttbotaoCincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttbotaoCincoActionPerformed
          totalAbastecer +=botaoCincoValor;
         
          JOptionPane.showConfirmDialog(rootPane, totalAbastecer); 
-    }//GEN-LAST:event_jlblbotaoCincoActionPerformed
+    }//GEN-LAST:event_jbttbotaoCincoActionPerformed
 
     
-    private void jlblbotaoUmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlblbotaoUmActionPerformed
-     
-         totalAbastecer +=botaoUmValor;
+    private void jbttbotaoUmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttbotaoUmActionPerformed
+        totalAbastecer +=botaoUmValor;
         
          JOptionPane.showConfirmDialog(rootPane, totalAbastecer);        
         
-    }//GEN-LAST:event_jlblbotaoUmActionPerformed
+    }//GEN-LAST:event_jbttbotaoUmActionPerformed
 
     private void jbttGasolinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttGasolinaActionPerformed
         energia = "gasolina";
+        jtextAreaCliente.append("Energia: Gasolina\n");
+        jbttElet.setEnabled(false);
+        jbttGasoleo.setEnabled(false);
+        jbttGas.setEnabled(false);
+        jbttPlasma.setEnabled(false);
+        jbttHidro.setEnabled(false);
     }//GEN-LAST:event_jbttGasolinaActionPerformed
 
     private void jbttGasoleoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttGasoleoActionPerformed
         energia = "gasoleo";
+        jtextAreaCliente.append("Energia: Gasóleo\n");
+        jbttElet.setEnabled(false);
+        jbttGas.setEnabled(false);
+        jbttGasolina.setEnabled(false);
+        jbttPlasma.setEnabled(false);
+        jbttHidro.setEnabled(false);
     }//GEN-LAST:event_jbttGasoleoActionPerformed
 
     private void jbttEletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttEletActionPerformed
-       energia = "eletricidade";
+        energia = "eletricidade";
+        jtextAreaCliente.append("Energia: Electricidade\n");
+        jbttGas.setEnabled(false);
+        jbttGasoleo.setEnabled(false);
+        jbttGasolina.setEnabled(false);
+        jbttPlasma.setEnabled(false);
+        jbttHidro.setEnabled(false);
     }//GEN-LAST:event_jbttEletActionPerformed
 
     private void jlblClientPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jlblClientPropertyChange
         
     }//GEN-LAST:event_jlblClientPropertyChange
 
-    private void jlblbotaoDezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlblbotaoDezActionPerformed
+    private void jbttbotaoDezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttbotaoDezActionPerformed
         totalAbastecer +=botaoDezValor;
         
          JOptionPane.showConfirmDialog(rootPane, totalAbastecer);
-    }//GEN-LAST:event_jlblbotaoDezActionPerformed
+    }//GEN-LAST:event_jbttbotaoDezActionPerformed
 
     private void jbttAbastecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttAbastecerActionPerformed
-     
+       
         //data.getGuiCliente(totalAbastecer, energia);
         connection.connGetClientes(codigo.codigo);
         connection.connGetData(energia);
         connection.setQuantidadeAbastecer(Integer.toString(totalAbastecer));
-        
-        System.out.println(connection.getValorUnitario());
-        System.out.println(connection.getFatura());
-        System.out.println(connection.getNome());
-        System.out.println(connection.getApelido());
-        System.out.println(connection.getNif());
-        System.out.println(connection.getPosto());
-        System.out.println(connection.getQuantidadeAbastecer());
+        connection.setTipoEnergia(energia);        
+        connection.insertVendas();        
+        connection.connInsertClientes();
         
     }//GEN-LAST:event_jbttAbastecerActionPerformed
 
     private void jbttGasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttGasActionPerformed
         energia = "gas";
+        jtextAreaCliente.append("Energia: Gás\n");
+        jbttElet.setEnabled(false);
+        jbttGasoleo.setEnabled(false);
+        jbttGasolina.setEnabled(false);
+        jbttPlasma.setEnabled(false);
+        jbttHidro.setEnabled(false);
     }//GEN-LAST:event_jbttGasActionPerformed
 
     private void jbttPlasmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttPlasmaActionPerformed
         energia = "plasma";
+        jtextAreaCliente.append("Energia: Plasma\n");
+        jbttElet.setEnabled(false);
+        jbttGasoleo.setEnabled(false);
+        jbttGasolina.setEnabled(false);
+        jbttGas.setEnabled(false);
+        jbttHidro.setEnabled(false);
     }//GEN-LAST:event_jbttPlasmaActionPerformed
 
     private void jbttHidroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttHidroActionPerformed
         energia = "hidrogenio";
+        jtextAreaCliente.append("Energia: Hidrogenio\n");
+        jbttElet.setEnabled(false);
+        jbttGasoleo.setEnabled(false);
+        jbttGasolina.setEnabled(false);
+        jbttPlasma.setEnabled(false);
+        jbttGas.setEnabled(false);
     }//GEN-LAST:event_jbttHidroActionPerformed
+
+    private void jbttAtestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttAtestarActionPerformed
+       this.botaoAtestar = rand.nextInt(100)+1;
+       totalAbastecer = botaoAtestar;       
+       jbttbotaoUm.setEnabled(false);
+       jbttbotaoCinco.setEnabled(false);
+       jbttbotaoDez.setEnabled(false);
+       jtextAreaCliente.append("Quantidade: "+totalAbastecer+ " unidades para atestar\n");
+       
+    }//GEN-LAST:event_jbttAtestarActionPerformed
+
+    private void jbttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttLimparActionPerformed
+       totalAbastecer = 0;
+       energia = null;
+       jtextAreaCliente.setText("");
+       jbttbotaoUm.setEnabled(true);
+       jbttbotaoCinco.setEnabled(true);
+       jbttbotaoDez.setEnabled(true);
+       
+        jbttElet.setEnabled(true);
+        jbttGasoleo.setEnabled(true);
+        jbttGasolina.setEnabled(true);
+        jbttPlasma.setEnabled(true);
+        jbttHidro.setEnabled(true);
+        jbttGas.setEnabled(true);
+    }//GEN-LAST:event_jbttLimparActionPerformed
 
     /**
      * @param args the command line arguments
@@ -361,20 +433,21 @@ public class Client extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbttAbastecer;
+    private javax.swing.JButton jbttAtestar;
     private javax.swing.JButton jbttElet;
-    private javax.swing.JButton jbttEncher;
     private javax.swing.JButton jbttGas;
     private javax.swing.JButton jbttGasoleo;
     private javax.swing.JButton jbttGasolina;
     private javax.swing.JButton jbttHidro;
     private javax.swing.JButton jbttLimpar;
     private javax.swing.JButton jbttPlasma;
-    private javax.swing.JFormattedTextField jftxtfieldOutput;
+    private javax.swing.JButton jbttbotaoCinco;
+    private javax.swing.JButton jbttbotaoDez;
+    private javax.swing.JButton jbttbotaoUm;
     private javax.swing.JLabel jlblApp;
     private javax.swing.JLabel jlblClient;
-    private javax.swing.JButton jlblbotaoCinco;
-    private javax.swing.JButton jlblbotaoDez;
-    private javax.swing.JButton jlblbotaoUm;
+    private javax.swing.JTextArea jtextAreaCliente;
     // End of variables declaration//GEN-END:variables
 }

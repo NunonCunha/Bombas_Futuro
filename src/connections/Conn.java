@@ -22,22 +22,29 @@ public class Conn {
     private final String username = "root";
     private final String password = "123456";
     
-    //Atributos Clientes        
+    
     private String nome;
     private String apelido;
     private String nif;
     private String posto;
-    //private String tipoEnergia;
+    private String idPosto;
+    private String tipoEnergia;
     private String valorUnitario;
-    private String fatura;
+    private int auxvalorUnitario;
     private String quantidadeAbastecer;
+    private int auxquantidadeAbastecer;
+    private int auxvalorTotalAbastecimento;
+    private String valorTotalAbastecimento; 
+    private String fatura;
+    private int auxFatura;
+    private String faturaFinal;
+   
+    private String queryVendas;
        
-        
-    //Métodos
     
-    //------------------Ligação para retorno de informação para clientes---------------------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------Connections----------------------------------------------------------------------------------------------------
         
-    public void connGetClientes (String nif){        
+    public void connGetClientes (String nif){//retorna os atributos do Cliente     
                  
         try{       
             
@@ -58,45 +65,6 @@ public class Conn {
               this.nif = clienteResult.getString("nif");
                 
             }
-           
-            /*
-            ResultSet postoResult = stmt.executeQuery("SELECT posto from energy_station.postos where posto ='"+posto+"'");
-                        
-            //Percorre a base de dados a procura da informação e retorna a mesma
-            while (postoResult.next()) {
-             
-              this.posto = postoResult.getString("posto");
-                            
-            }            
-            
-            ResultSet energiaResult = stmt.executeQuery("SELECT tipo_energia,valor_unidade from energy_station.energia where tipo_energia ='"+energia+"'");
-                        
-            //Percorre a base de dados a procura da informação e retorna a mesma
-            while (energiaResult.next()) {
-             
-              this.tipoEnergia = energiaResult.getString("tipo_energia");
-              this.valorUnitario = energiaResult.getString("valor_unidade");
-                
-            }
-          
-            ResultSet vendaResult = stmt.executeQuery("SELECT fatura_nr FROM energy_station.vendas ORDER BY fatura_nr DESC LIMIT 1");
-                        
-            //Percorre a base de dados a procura da informação e retorna a mesma
-            while (vendaResult.next()) {
-             
-              this.fatura = vendaResult.getString("fatura_nr");            
-                
-            }           
-            
-            System.out.println("Ligado a Base de Dados");
-            System.out.println(this.nome);
-            System.out.println(this.apelido);
-            System.out.println(this.nif);
-            System.out.println(this.posto);
-            System.out.println(this.tipoEnergia);
-            System.out.println(this.valorUnitario);
-            System.out.println(this.fatura);
-            */
              connection.close();
         }
         
@@ -111,7 +79,7 @@ public class Conn {
         
     }   
     
-    public void connGetData (String energia){        
+    public void connGetData (String energia){//Retorna informação relativa a ultima factura na tabela vendas, o valor unitário do combustivel selecionado,e o posto disponível
                  
         try{       
             
@@ -140,16 +108,15 @@ public class Conn {
                 
             }
             
-            ResultSet postoResult = stmt.executeQuery("SELECT posto FROM energy_station.postos where disponibilidade = '1'");
+            ResultSet postoResult = stmt.executeQuery("SELECT posto,idPosto FROM energy_station.postos where disponibilidade = '1'");
                         
             //Percorre a base de dados a procura da informação e retorna a mesma
             while (postoResult.next()) {
              
               this.posto = postoResult.getString("posto");
+              this.idPosto = postoResult.getString("idPosto");
                 
-            }
-            
-           
+            }          
              connection.close();
         }
         
@@ -163,7 +130,62 @@ public class Conn {
         }
         
     }
+    
+    public void connInsertClientes (){        
+                 
+        try{       
+            
+             // criação do objecto para a ligaçaõ a base de dados
+            Connection connection = DriverManager.getConnection(this.url,this.username,this.password);            
+           
+            //Criação de objecto com base na biblioteca java.sql.Statement
+            Statement stmt = connection.createStatement();  
+                        
+            //Criação de objecto para execução de query's com base na biblioteca java.sql.ResultSet
+            stmt.executeUpdate(this.queryVendas);
+            
+        }
+        
+        //Caso exista algum erro, e lançada uma mensagem de excepção
+        catch (SQLException e){
+            
+            System.out.println("Não foi possivel gravar valores");
+            
+            e.printStackTrace();
+            
+        }
+        
+    } 
+    
+    //---------------------------------------------------------------Métodos para manipulação---------------------------------------------------------------------------------------------------------------
+       
+    public void insertVendas (){    
+        
+        incrementaFatura();
+        valorTotalAbastecimento();
+        
+        this.queryVendas = "insert into vendas values(now(),"+this.faturaFinal+" , "+this.nif+", '"+this.nome+"', '"+this.apelido+"', "+this.idPosto+", '"+this.tipoEnergia+"', "+this.valorUnitario+", "+this.quantidadeAbastecer+", "+this.valorTotalAbastecimento+")";
+          
+    }
+    
+    
+    public void incrementaFatura(){
+        this.auxFatura = Integer.parseInt(this.fatura);
+        this.auxFatura++;       
+        this.faturaFinal = Integer.toString(this.auxFatura);        
+    }
 
+    public void valorTotalAbastecimento(){
+        
+        this.auxvalorUnitario = Integer.parseInt(this.valorUnitario);
+        this.auxquantidadeAbastecer = Integer.parseInt(this.quantidadeAbastecer);
+        this.auxvalorTotalAbastecimento = this.auxquantidadeAbastecer*this.auxvalorUnitario;
+        this.valorTotalAbastecimento = Integer.toString(this.auxvalorTotalAbastecimento);
+        
+    }
+        
+    //---------------------------------------------------------------Getters and Setters---------------------------------------------------------------------------------------------------------------
+           
     public String getQuantidadeAbastecer() {
         return quantidadeAbastecer;
     }
@@ -193,12 +215,20 @@ public class Conn {
 
     public String getPosto() {
         return posto;
-    }   
-/*
-    public String getTipoEnergia() {
-        return tipoEnergia;
-    }    
+    }  
 
+    public String getIdPosto() {
+        return idPosto;
+    }
+    
+    public void setTipoEnergia(String energia) {
+        this.tipoEnergia = energia;
+    }    
+    
+    public String getTipoEnergia() {
+        return this.tipoEnergia;
+    } 
+/*
     public String getValorUnitario() {
         return valorUnitario;
     }    
@@ -206,76 +236,14 @@ public class Conn {
     public String getFatura() {
         return fatura;
     }
-    
-    
-    //------------------Inserir informação---------------------------------------------------------------------------------------------------------------------------------------------
-    
-    public void connInsertClientes (){        
-                 
-        try{       
-            
-             // criação do objecto para a ligaçaõ a base de dados
-            Connection connection = DriverManager.getConnection(this.url,this.username,this.password);            
-           
-            //Criação de objecto com base na biblioteca java.sql.Statement
-            Statement stmt = connection.createStatement();  
-                        
-            //Criação de objecto para execução de query's com base na biblioteca java.sql.ResultSet
-            stmt.executeUpdate("Insert into vendas(fatura_nr, nif_cliente, nome_cliente, apelido_cliente, posto_abs, tipo_energia, valor_unidade, quantidade, total)\n" +
-                                "values ('AA0020', 2057205007, 'Ronald', 'Lee', 3, 'Eletricidade', 2, 30, 200)");
 
-        }
-        
-        //Caso exista algum erro, e lançada uma mensagem de excepção
-        catch (SQLException e){
-            
-            System.out.println("Não foi possivel gravar valores");
-            
-            e.printStackTrace();
-            
-        }
-        
-    }  
+    public int getAuxFatura() {
+        return auxFatura;
+    }
 
-   //---------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    public void conngetSupervisor (){        
-                 
-        try{       
-            
-             // criação do objecto para a ligaçaõ a base de dados
-            Connection connection = DriverManager.getConnection(url,username,password);            
-           
-            //Criação de objecto com base na biblioteca java.sql.Statement
-            Statement stmt = connection.createStatement();  
-                        
-            //Criação de objecto pa execução de query's com base na biblioteca java.sql.ResultSet
-            ResultSet rs = stmt.executeQuery("SELECT * from ");
-                        
-            //Percorre a base de dados a procura da informação e retorna a mesma
-            while (rs.next()) {
-                             
-            }
-                /*
-                nome = rs.getString("presidentName");
-                partido = rs.getString("politicalParty");            
-            }      
-           */
-            System.out.println("Ligado a Base de Dados");
-            //System.out.println();
-            //System.out.println();
-        }
-        
-        //Caso exista algum erro, e lançada uma mensagem de excepção
-        catch (SQLException e){
-            
-            System.out.println("Não foi possível ligar á Base de Dados");
-            
-            e.printStackTrace();
-            
-        }
-        
-    } 
+    public String getFaturaFinal() {
+        return faturaFinal;
+    }
     
    
 }
