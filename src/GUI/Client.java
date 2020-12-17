@@ -35,10 +35,13 @@ public class Client extends javax.swing.JFrame {
     private String energia;    
         
     
+    
     public void labelName(){
         //objecto para retornar o codigo de log in do cliente
         connection.connGetClientes(codigo.codigo);
         jlblClient.setText("Bem-Vindo/a "+connection.getNome()+" "+connection.getApelido());
+        jtextAreaCliente.setText("Quantidade:" +totalAbastecer + "unidades" );
+        
     }     
       
     
@@ -378,6 +381,7 @@ public class Client extends javax.swing.JFrame {
        jbttbotaoCinco.setEnabled(false);
        jbttbotaoDez.setEnabled(false);
        jtextAreaCliente.append("Quantidade: "+totalAbastecer+ " unidades para atestar\n");
+       
        
     }//GEN-LAST:event_jbttAtestarActionPerformed
 
