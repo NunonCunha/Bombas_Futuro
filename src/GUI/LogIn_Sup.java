@@ -6,19 +6,18 @@
 package GUI;
 
 import connections.Conn;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Leand
+ * @author Grupo A
  */
 public class LogIn_Sup extends javax.swing.JFrame {
 
     Conn connection = new Conn();
     
-    static String user;
-    static String password;
+   static String user;
+   static String password;
     
     
     /**

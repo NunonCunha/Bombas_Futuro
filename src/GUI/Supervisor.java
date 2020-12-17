@@ -5,16 +5,40 @@
  */
 package GUI;
 
+import connections.Conn;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author NCUNHA
+ * @author Grupo A
  */
 public class Supervisor extends javax.swing.JFrame {
-
+    
+    Conn connection = new Conn();  
+    /*
+    LogIn_Sup dados = new LogIn_Sup();
+       
+    
+    public void labelName(){
+        connection.connGetSupervisor(dados.user, dados.password);       
+        jlblSupervisor.setText("Bem vindo/a "+connection.getUserSupervisor());   
+    }
+    */
+    private String bomba;
+    
+    public void setBomba(){
+        connection.setBomba(this.bomba);
+        connection.valorTotalbomba();
+        connection.quantidadeTotalBomba();        
+        connection.connGetDataSupervisor();        
+        jtextAreaSupervisor.setText("Bomba "+this.bomba+"\nValor total Vendido: "+connection.getValorTotalBomba()+"\nQuantidade total Abastecida: "+connection.getQuantidadeTotalBomba());
+    }
+    
     /**
      * Creates new form Supervisor
      */
     public Supervisor() {
+        //labelName();
         initComponents();
     }
 
@@ -28,9 +52,9 @@ public class Supervisor extends javax.swing.JFrame {
     private void initComponents() {
 
         jlblApp = new javax.swing.JLabel();
-        jlblClient = new javax.swing.JLabel();
+        jlblSupervisor = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtextAreaCliente = new javax.swing.JTextArea();
+        jtextAreaSupervisor = new javax.swing.JTextArea();
         jbttBomba3 = new javax.swing.JButton();
         jbttBomba1 = new javax.swing.JButton();
         jbttBomba2 = new javax.swing.JButton();
@@ -50,18 +74,18 @@ public class Supervisor extends javax.swing.JFrame {
         jlblApp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jlblApp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/Capture (1).png"))); // NOI18N
 
-        jlblClient.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jlblClient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlblClient.setText("Nome");
-        jlblClient.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        jlblSupervisor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlblSupervisor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblSupervisor.setText("Nome");
+        jlblSupervisor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jlblClientPropertyChange(evt);
+                jlblSupervisorPropertyChange(evt);
             }
         });
 
-        jtextAreaCliente.setColumns(20);
-        jtextAreaCliente.setRows(5);
-        jScrollPane1.setViewportView(jtextAreaCliente);
+        jtextAreaSupervisor.setColumns(20);
+        jtextAreaSupervisor.setRows(5);
+        jScrollPane1.setViewportView(jtextAreaSupervisor);
 
         jbttBomba3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jbttBomba3.setText("Bomba 3");
@@ -226,7 +250,7 @@ public class Supervisor extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlblApp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jlblClient, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jlblSupervisor, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -234,7 +258,7 @@ public class Supervisor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlblClient)
+                    .addComponent(jlblSupervisor)
                     .addComponent(jlblApp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,56 +294,68 @@ public class Supervisor extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jlblClientPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jlblClientPropertyChange
+    private void jlblSupervisorPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jlblSupervisorPropertyChange
 
-    }//GEN-LAST:event_jlblClientPropertyChange
+    }//GEN-LAST:event_jlblSupervisorPropertyChange
 
     private void jbttBomba3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttBomba3ActionPerformed
-
+        this.bomba = "3";
+        setBomba();
     }//GEN-LAST:event_jbttBomba3ActionPerformed
 
     private void jbttBomba1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttBomba1ActionPerformed
-        // TODO add your handling code here:
+        this.bomba = "1";
+        setBomba();
     }//GEN-LAST:event_jbttBomba1ActionPerformed
 
     private void jbttBomba2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttBomba2ActionPerformed
-        // TODO add your handling code here:
+        this.bomba = "2";
+        setBomba();
     }//GEN-LAST:event_jbttBomba2ActionPerformed
 
     private void jbttBomba6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttBomba6ActionPerformed
-        // TODO add your handling code here:
+        this.bomba = "6";
+        setBomba();
     }//GEN-LAST:event_jbttBomba6ActionPerformed
 
     private void jbttBomba4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttBomba4ActionPerformed
-        // TODO add your handling code here:
+        this.bomba = "4";
+        setBomba();
     }//GEN-LAST:event_jbttBomba4ActionPerformed
 
     private void jbttBomba5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttBomba5ActionPerformed
-        // TODO add your handling code here:
+        this.bomba = "5";
+        setBomba();
     }//GEN-LAST:event_jbttBomba5ActionPerformed
 
     private void jbttBomba9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttBomba9ActionPerformed
-        // TODO add your handling code here:
+        this.bomba = "9";
+        setBomba();
     }//GEN-LAST:event_jbttBomba9ActionPerformed
 
     private void jbttBomba8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttBomba8ActionPerformed
-        // TODO add your handling code here:
+        this.bomba = "8";
+        setBomba();
     }//GEN-LAST:event_jbttBomba8ActionPerformed
 
     private void jbttBomba7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttBomba7ActionPerformed
-        // TODO add your handling code here:
+        this.bomba = "7";
+        setBomba();
     }//GEN-LAST:event_jbttBomba7ActionPerformed
 
     private void jbttBomba10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttBomba10ActionPerformed
-        // TODO add your handling code here:
+        this.bomba = "10";
+        setBomba();
     }//GEN-LAST:event_jbttBomba10ActionPerformed
 
     private void jbttTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttTotalActionPerformed
-        // TODO add your handling code here:
+        connection.totalPosto();
+        connection.connGetTotalPosto();        
+        jtextAreaSupervisor.setText("Total do Posto de Abastecimento\nValor total Vendido: "+connection.getTotalValorPosto()+"\nQuantidade total Abastecida: "+connection.getTotalQuantidadePosto());
     }//GEN-LAST:event_jbttTotalActionPerformed
 
     private void jbttSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttSairActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jbttSairActionPerformed
 
     /**
@@ -372,7 +408,7 @@ public class Supervisor extends javax.swing.JFrame {
     private javax.swing.JButton jbttSair;
     private javax.swing.JButton jbttTotal;
     private javax.swing.JLabel jlblApp;
-    private javax.swing.JLabel jlblClient;
-    private javax.swing.JTextArea jtextAreaCliente;
+    private javax.swing.JLabel jlblSupervisor;
+    private javax.swing.JTextArea jtextAreaSupervisor;
     // End of variables declaration//GEN-END:variables
 }

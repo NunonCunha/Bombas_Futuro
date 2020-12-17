@@ -17,9 +17,6 @@ public class Conn {
     //Objectos
     Random rand = new Random();
     
-    
-    //Atributos
-    
     //URL da base de dados
     private final String url = "jdbc:mysql://localhost:3306/energy_station?zeroDateTimeBehavior=CONVERT_TO_NULL"; 
     
@@ -27,26 +24,39 @@ public class Conn {
     private final String username = "root";
     private final String password = "123456";
     
-    
+    //Atributos
     private String nome;
     private String apelido;
     private String nif;
     private String posto;
-    private String idPosto;
-    private int randomPosto;
+    private String idPosto;    
     private String tipoEnergia;
-    private String valorUnitario;
-    private int auxvalorUnitario;
-    private String quantidadeAbastecer;
+    private String valorUnitario;    
+    private String quantidadeAbastecer;    
+    private String valorTotalAbastecimento; 
+    private String fatura;    
+    private String faturaFinal;
+    
+    //Atributos para manipulação de variáveis
+    private int auxFatura;
     private int auxquantidadeAbastecer;
     private int auxvalorTotalAbastecimento;
-    private String valorTotalAbastecimento; 
-    private String fatura;
-    private int auxFatura;
-    private String faturaFinal;
+    private int auxvalorUnitario;
+    private int randomPosto;
+    private String bomba;  
+    private String valorTotalBomba;
+    private String quantidadeTotalBomba;
+    private String totalValorPosto;
+    private String totalQuantidadePosto;
    
+    //Atributos para querys
     private String queryVendas;
+    private String queryValorTotalBomba;
+    private String queryQuantidadeTotalBomba; 
+    private String queryValorTotalPosto;
+    private String queryQuantidadeTotalPosto;
     
+    //atributos para supervisor
     private String userSupervisor;
     private String passSupervisor;
        
@@ -88,7 +98,7 @@ public class Conn {
         
     }   
     
-        public void connGetSupervisor (String user,String password){//retorna os atributos do Cliente     
+    public void connGetSupervisor (String user,String password){//retorna os atributos do Cliente     
                  
         try{       
             
@@ -174,6 +184,90 @@ public class Conn {
         
     }
     
+    public void connGetDataSupervisor (){//Retorna informação relativa a ultima factura na tabela vendas, o valor unitário do combustivel selecionado,e o posto disponível
+                 
+        try{       
+            
+             // criação do objecto para a ligação a base de dados
+            Connection connection = DriverManager.getConnection(this.url,this.username,this.password);            
+           
+            //Criação de objecto com base na biblioteca java.sql.Statement
+            Statement stmt = connection.createStatement();  
+                        
+            //Criação de objecto pa execução de query's com base na biblioteca java.sql.ResultSet
+            ResultSet totalBombaResult = stmt.executeQuery(this.queryValorTotalBomba);
+                        
+            //Percorre a base de dados a procura da informação e retorna a mesma
+            while (totalBombaResult.next()) {
+             
+              this.valorTotalBomba = totalBombaResult.getString("SUM(total)");
+                
+            }    
+            
+            ResultSet quantidadeBombaResult = stmt.executeQuery(this.queryQuantidadeTotalBomba);
+                        
+            //Percorre a base de dados a procura da informação e retorna a mesma
+            while (quantidadeBombaResult.next()) {
+             
+              this.quantidadeTotalBomba = quantidadeBombaResult.getString("SUM(quantidade)");
+                
+            }
+                     
+             connection.close();
+        }
+        
+        //Caso exista algum erro, e lançada uma mensagem de excepção
+        catch (SQLException e){
+            
+            System.out.println("Não foi possível retornar valores");
+            
+            e.printStackTrace();
+            
+        }
+        
+    }
+    
+        public void connGetTotalPosto (){//Retorna informação relativa a ultima factura na tabela vendas, o valor unitário do combustivel selecionado,e o posto disponível
+                 
+        try{       
+            
+             // criação do objecto para a ligação a base de dados
+            Connection connection = DriverManager.getConnection(this.url,this.username,this.password);            
+           
+            //Criação de objecto com base na biblioteca java.sql.Statement
+            Statement stmt = connection.createStatement();  
+                        
+            //Criação de objecto pa execução de query's com base na biblioteca java.sql.ResultSet
+            ResultSet totalValorPostoResult = stmt.executeQuery(this.queryValorTotalPosto);
+                        
+            //Percorre a base de dados a procura da informação e retorna a mesma
+            while (totalValorPostoResult.next()) {
+             
+              this.totalValorPosto = totalValorPostoResult.getString("SUM(total)");
+              
+            }
+              ResultSet totalQuantidadePostoResult = stmt.executeQuery(this.queryQuantidadeTotalPosto);
+                        
+            //Percorre a base de dados a procura da informação e retorna a mesma
+            while (totalQuantidadePostoResult.next()) {
+            
+              this.totalQuantidadePosto = totalQuantidadePostoResult.getString("SUM(quantidade)");
+            }
+                     
+             connection.close();
+        }
+        
+        //Caso exista algum erro, e lançada uma mensagem de excepção
+        catch (SQLException e){
+            
+            System.out.println("Não foi possível retornar valores");
+            
+            e.printStackTrace();
+            
+        }
+        
+    }
+    
     public void connInsertClientes (){        
                  
         try{       
@@ -210,8 +304,20 @@ public class Conn {
         
         this.queryVendas = "insert into vendas values(now(),"+this.faturaFinal+" , "+this.nif+", '"+this.nome+"', '"+this.apelido+"', "+this.randomPosto+", '"+this.tipoEnergia+"', "+this.valorUnitario+", "+this.quantidadeAbastecer+", "+this.valorTotalAbastecimento+")";
           
+    }   
+    
+    public void valorTotalbomba(){
+        this.queryValorTotalBomba = "SELECT SUM(total) FROM energy_station.vendas WHERE posto_abs ="+this.bomba+"";
     }
     
+    public void quantidadeTotalBomba(){
+        this.queryQuantidadeTotalBomba = "SELECT SUM(quantidade) FROM energy_station.vendas WHERE posto_abs ="+this.bomba+"";
+    }
+    
+    public void totalPosto(){
+        this.queryValorTotalPosto = "SELECT SUM(total) FROM energy_station.vendas";
+        this.queryQuantidadeTotalPosto = "SELECT SUM(quantidade) FROM energy_station.vendas";
+    }
     
     public void randomPosto(){
         randomPosto = rand.nextInt(10)+1;        
@@ -293,6 +399,26 @@ public class Conn {
     public String getPassSupervisor() {
         return passSupervisor;
     }
-    
+
+    public void setBomba(String bomba) {
+        this.bomba = bomba;
+    }
+
+    public String getValorTotalBomba() {
+        return valorTotalBomba;
+    }
+
+    public String getQuantidadeTotalBomba() {
+        return quantidadeTotalBomba;
+    }
+
+    public String getTotalValorPosto() {
+        return totalValorPosto;
+    }
+
+    public String getTotalQuantidadePosto() {
+        return totalQuantidadePosto;
+    }
+      
    
 }

@@ -70,7 +70,7 @@
                   <Group type="102" attributes="0">
                       <Component id="jlblApp" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jlblClient" min="-2" pref="338" max="-2" attributes="0"/>
+                      <Component id="jlblSupervisor" min="-2" pref="338" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -82,7 +82,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jlblClient" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlblSupervisor" min="-2" max="-2" attributes="0"/>
                   <Component id="jlblApp" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="11" max="32767" attributes="0"/>
@@ -136,7 +136,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlblClient">
+    <Component class="javax.swing.JLabel" name="jlblSupervisor">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="0"/>
@@ -145,7 +145,7 @@
         <Property name="text" type="java.lang.String" value="Nome"/>
       </Properties>
       <Events>
-        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jlblClientPropertyChange"/>
+        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jlblSupervisorPropertyChange"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -155,7 +155,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jtextAreaCliente">
+        <Component class="javax.swing.JTextArea" name="jtextAreaSupervisor">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
