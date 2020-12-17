@@ -6,13 +6,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 
 /**
  *
- * @author NCUNHA
+ * @author Grupo A
  */
 public class Conn {
-                  
+     
+    //Objectos
+    Random rand = new Random();
+    
+    
     //Atributos
     
     //URL da base de dados
@@ -28,6 +33,7 @@ public class Conn {
     private String nif;
     private String posto;
     private String idPosto;
+    private int randomPosto;
     private String tipoEnergia;
     private String valorUnitario;
     private int auxvalorUnitario;
@@ -108,7 +114,7 @@ public class Conn {
                 
             }
             
-            ResultSet postoResult = stmt.executeQuery("SELECT posto,idPosto FROM energy_station.postos where disponibilidade = '1'");
+            ResultSet postoResult = stmt.executeQuery("SELECT posto,idPosto FROM energy_station.postos where idPosto = '"+this.randomPosto+"'");
                         
             //Percorre a base de dados a procura da informação e retorna a mesma
             while (postoResult.next()) {
@@ -163,11 +169,16 @@ public class Conn {
         
         incrementaFatura();
         valorTotalAbastecimento();
+        randomPosto();
         
-        this.queryVendas = "insert into vendas values(now(),"+this.faturaFinal+" , "+this.nif+", '"+this.nome+"', '"+this.apelido+"', "+this.idPosto+", '"+this.tipoEnergia+"', "+this.valorUnitario+", "+this.quantidadeAbastecer+", "+this.valorTotalAbastecimento+")";
+        this.queryVendas = "insert into vendas values(now(),"+this.faturaFinal+" , "+this.nif+", '"+this.nome+"', '"+this.apelido+"', "+this.randomPosto+", '"+this.tipoEnergia+"', "+this.valorUnitario+", "+this.quantidadeAbastecer+", "+this.valorTotalAbastecimento+")";
           
     }
     
+    
+    public void randomPosto(){
+        randomPosto = rand.nextInt(10)+1;        
+    }
     
     public void incrementaFatura(){
         this.auxFatura = Integer.parseInt(this.fatura);
@@ -192,14 +203,11 @@ public class Conn {
 
     public void setQuantidadeAbastecer(String quantidadeAbastecer) {
         this.quantidadeAbastecer = quantidadeAbastecer;
-    }
-    
-    
+    } 
 
     public String getValorUnitario() {
         return valorUnitario;
     }
-    
     
     public String getNome() {
         return nome;
@@ -228,11 +236,7 @@ public class Conn {
     public String getTipoEnergia() {
         return this.tipoEnergia;
     } 
-/*
-    public String getValorUnitario() {
-        return valorUnitario;
-    }    
-*/
+
     public String getFatura() {
         return fatura;
     }

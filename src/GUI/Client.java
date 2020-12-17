@@ -8,11 +8,11 @@ package GUI;
 import connections.Conn;
 import java.util.Random;
 import javax.swing.JOptionPane;
-import user.client;
+
 
 /**
  *
- * @author NCUNHA
+ * @author Grupo A
  */
 public class Client extends javax.swing.JFrame {
        
@@ -31,7 +31,6 @@ public class Client extends javax.swing.JFrame {
     private final int botaoDezValor=10;
     private int botaoAtestar;
     private int totalAbastecer;  
-    private int totalPagar;
     private String energia;    
         
     
@@ -40,10 +39,27 @@ public class Client extends javax.swing.JFrame {
         //objecto para retornar o codigo de log in do cliente
         connection.connGetClientes(codigo.codigo);
         jlblClient.setText("Bem-Vindo/a "+connection.getNome()+" "+connection.getApelido());
-        jtextAreaCliente.append("Quantidade:" + totalAbastecer + "unidades" );
-        
+          
     }     
-      
+    
+    public void areaCliente(String energia, int totalAbastecer){
+        
+        jtextAreaCliente.setText("Energia: "+energia+"\nQuantidade:" + totalAbastecer + "unidades" );
+    }      
+    
+    public void enableButtons(){
+       jbttbotaoUm.setEnabled(true);
+       jbttbotaoCinco.setEnabled(true);
+       jbttbotaoDez.setEnabled(true);
+       jbttAtestar.setEnabled(true);        
+    }
+    
+    public void disableButtons(){
+       jbttbotaoUm.setEnabled(false);
+       jbttbotaoCinco.setEnabled(false);
+       jbttbotaoDez.setEnabled(false);
+       jbttAtestar.setEnabled(false);
+    }
     
     /**
      * Creates new form Client
@@ -52,6 +68,8 @@ public class Client extends javax.swing.JFrame {
 
         initComponents();
         labelName();
+        
+        disableButtons();
     }       
     
     /**
@@ -84,7 +102,7 @@ public class Client extends javax.swing.JFrame {
         setTitle("Main");
 
         jlblApp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jlblApp.setText("BOFU");
+        jlblApp.setIcon(new javax.swing.ImageIcon("C:\\Users\\NCUNHA\\Desktop\\ATLÂNTICA\\2º Ano\\1º SEMESTRE\\LINGUAGEM DE PROGRAMAÇÃO\\Trabalho2_Modelo4_Type3\\Capture (1).png")); // NOI18N
 
         jbttAtestar.setText("Atestar");
         jbttAtestar.setToolTipText("");
@@ -162,6 +180,7 @@ public class Client extends javax.swing.JFrame {
         });
 
         jlblClient.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlblClient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblClient.setText("Nome");
         jlblClient.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -191,55 +210,52 @@ public class Client extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(241, 241, 241)
-                .addComponent(jlblClient, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(148, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(305, 305, 305)
-                        .addComponent(jlblApp))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jbttGasoleo)
+                                .addComponent(jbttGasolina, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGap(101, 101, 101)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jbttPlasma, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jbttHidro, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jbttGas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jbttElet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jbttGasoleo)
-                                        .addComponent(jbttGasolina, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addGap(101, 101, 101)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jbttPlasma, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jbttHidro, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jbttGas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jbttElet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jbttbotaoUm)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jbttbotaoCinco)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jbttbotaoDez))
-                                        .addComponent(jScrollPane1))
-                                    .addGap(33, 33, 33)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jbttAtestar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jbttLimpar))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(jbttAbastecer, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(141, Short.MAX_VALUE))
+                                    .addComponent(jbttbotaoUm)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jbttbotaoCinco)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jbttbotaoDez))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(33, 33, 33)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jbttAtestar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbttLimpar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jbttAbastecer, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jlblClient, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(jlblApp)))
+                .addGap(141, 141, 141))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(25, 25, 25)
                 .addComponent(jlblApp)
-                .addGap(32, 32, 32)
+                .addGap(35, 35, 35)
                 .addComponent(jlblClient)
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -264,7 +280,7 @@ public class Client extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(jbttLimpar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jbttAbastecer, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
@@ -272,6 +288,7 @@ public class Client extends javax.swing.JFrame {
         jlblClient.getAccessibleContext().setAccessibleName("");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -279,16 +296,22 @@ public class Client extends javax.swing.JFrame {
     
     
     private void jbttbotaoCincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttbotaoCincoActionPerformed
-         totalAbastecer +=botaoCincoValor;
+       
+        totalAbastecer +=botaoCincoValor;
         
-         JOptionPane.showConfirmDialog(rootPane, totalAbastecer); 
+        areaCliente(energia, totalAbastecer);
+        
+        jbttAtestar.setEnabled(false);
+
     }//GEN-LAST:event_jbttbotaoCincoActionPerformed
 
     
     private void jbttbotaoUmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttbotaoUmActionPerformed
         totalAbastecer +=botaoUmValor;
         
-         JOptionPane.showConfirmDialog(rootPane, totalAbastecer);        
+        areaCliente(energia, totalAbastecer);
+        
+        jbttAtestar.setEnabled(false);     
         
     }//GEN-LAST:event_jbttbotaoUmActionPerformed
 
@@ -299,7 +322,10 @@ public class Client extends javax.swing.JFrame {
         jbttGasoleo.setEnabled(false);
         jbttGas.setEnabled(false);
         jbttPlasma.setEnabled(false);
-        jbttHidro.setEnabled(false);
+        jbttHidro.setEnabled(false);    
+        
+        enableButtons();
+
     }//GEN-LAST:event_jbttGasolinaActionPerformed
 
     private void jbttGasoleoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttGasoleoActionPerformed
@@ -310,6 +336,8 @@ public class Client extends javax.swing.JFrame {
         jbttGasolina.setEnabled(false);
         jbttPlasma.setEnabled(false);
         jbttHidro.setEnabled(false);
+        
+        enableButtons();
     }//GEN-LAST:event_jbttGasoleoActionPerformed
 
     private void jbttEletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttEletActionPerformed
@@ -320,6 +348,8 @@ public class Client extends javax.swing.JFrame {
         jbttGasolina.setEnabled(false);
         jbttPlasma.setEnabled(false);
         jbttHidro.setEnabled(false);
+        
+        enableButtons();
     }//GEN-LAST:event_jbttEletActionPerformed
 
     private void jlblClientPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jlblClientPropertyChange
@@ -329,7 +359,11 @@ public class Client extends javax.swing.JFrame {
     private void jbttbotaoDezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttbotaoDezActionPerformed
         totalAbastecer +=botaoDezValor;
         
-         JOptionPane.showConfirmDialog(rootPane, totalAbastecer);
+        areaCliente(energia, totalAbastecer);
+        
+        jbttAtestar.setEnabled(false);
+        
+
     }//GEN-LAST:event_jbttbotaoDezActionPerformed
 
     private void jbttAbastecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttAbastecerActionPerformed
@@ -342,6 +376,11 @@ public class Client extends javax.swing.JFrame {
         connection.insertVendas();        
         connection.connInsertClientes();
         
+        JOptionPane.showMessageDialog(this, "Obrigado por utilizar os nossos serviços");
+        
+        new LogIn_Cliente().setVisible(true);
+        this.dispose();
+    
     }//GEN-LAST:event_jbttAbastecerActionPerformed
 
     private void jbttGasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttGasActionPerformed
@@ -352,6 +391,8 @@ public class Client extends javax.swing.JFrame {
         jbttGasolina.setEnabled(false);
         jbttPlasma.setEnabled(false);
         jbttHidro.setEnabled(false);
+        
+        enableButtons();
     }//GEN-LAST:event_jbttGasActionPerformed
 
     private void jbttPlasmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttPlasmaActionPerformed
@@ -362,6 +403,8 @@ public class Client extends javax.swing.JFrame {
         jbttGasolina.setEnabled(false);
         jbttGas.setEnabled(false);
         jbttHidro.setEnabled(false);
+        
+        enableButtons();
     }//GEN-LAST:event_jbttPlasmaActionPerformed
 
     private void jbttHidroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttHidroActionPerformed
@@ -372,6 +415,8 @@ public class Client extends javax.swing.JFrame {
         jbttGasolina.setEnabled(false);
         jbttPlasma.setEnabled(false);
         jbttGas.setEnabled(false);
+        
+        enableButtons();
     }//GEN-LAST:event_jbttHidroActionPerformed
 
     private void jbttAtestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttAtestarActionPerformed
@@ -389,9 +434,6 @@ public class Client extends javax.swing.JFrame {
        totalAbastecer = 0;
        energia = null;
        jtextAreaCliente.setText("");
-       jbttbotaoUm.setEnabled(true);
-       jbttbotaoCinco.setEnabled(true);
-       jbttbotaoDez.setEnabled(true);
        
         jbttElet.setEnabled(true);
         jbttGasoleo.setEnabled(true);
@@ -399,6 +441,9 @@ public class Client extends javax.swing.JFrame {
         jbttPlasma.setEnabled(true);
         jbttHidro.setEnabled(true);
         jbttGas.setEnabled(true);
+        
+        disableButtons();      
+        
     }//GEN-LAST:event_jbttLimparActionPerformed
 
     /**
