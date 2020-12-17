@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author NCUNHA
+ * @author Grupo A
  */
 public class LogIn_Cliente extends javax.swing.JFrame {    
     

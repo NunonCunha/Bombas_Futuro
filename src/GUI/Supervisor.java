@@ -6,7 +6,6 @@
 package GUI;
 
 import connections.Conn;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,7 +14,7 @@ import javax.swing.JOptionPane;
 public class Supervisor extends javax.swing.JFrame {
     
     Conn connection = new Conn();  
-    /*
+    
     LogIn_Sup dados = new LogIn_Sup();
        
     
@@ -23,7 +22,7 @@ public class Supervisor extends javax.swing.JFrame {
         connection.connGetSupervisor(dados.user, dados.password);       
         jlblSupervisor.setText("Bem vindo/a "+connection.getUserSupervisor());   
     }
-    */
+    
     private String bomba;
     
     public void setBomba(){
@@ -38,8 +37,9 @@ public class Supervisor extends javax.swing.JFrame {
      * Creates new form Supervisor
      */
     public Supervisor() {
-        //labelName();
+        
         initComponents();
+        labelName();
     }
 
     /**

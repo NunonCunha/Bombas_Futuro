@@ -40,9 +40,9 @@ public class LogIn_Sup extends javax.swing.JFrame {
         jtxtfldUser = new javax.swing.JTextField();
         jlblUser = new javax.swing.JLabel();
         jlblPass = new javax.swing.JLabel();
-        jtxtlblPass = new javax.swing.JTextField();
         jlblLogo = new javax.swing.JLabel();
         jbttLogin = new javax.swing.JButton();
+        jtxtlblPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,8 +84,8 @@ public class LogIn_Sup extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jtxtfldUser)
-                    .addComponent(jtxtlblPass)
-                    .addComponent(jbttLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbttLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(jtxtlblPass))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -171,6 +171,6 @@ public class LogIn_Sup extends javax.swing.JFrame {
     private javax.swing.JLabel jlblPass;
     private javax.swing.JLabel jlblUser;
     private javax.swing.JTextField jtxtfldUser;
-    private javax.swing.JTextField jtxtlblPass;
+    private javax.swing.JPasswordField jtxtlblPass;
     // End of variables declaration//GEN-END:variables
 }
