@@ -46,6 +46,9 @@ public class Conn {
     private String faturaFinal;
    
     private String queryVendas;
+    
+    private String userSupervisor;
+    private String passSupervisor;
        
     
     //-----------------------------------------------------------Connections----------------------------------------------------------------------------------------------------
@@ -84,6 +87,40 @@ public class Conn {
         }
         
     }   
+    
+        public void connGetSupervisor (String user,String password){//retorna os atributos do Cliente     
+                 
+        try{       
+            
+             // criação do objecto para a ligação a base de dados
+            Connection connection = DriverManager.getConnection(this.url,this.username,this.password);            
+           
+            //Criação de objecto com base na biblioteca java.sql.Statement
+            Statement stmt = connection.createStatement();  
+                        
+            //Criação de objecto pa execução de query's com base na biblioteca java.sql.ResultSet
+            ResultSet supervisorResult = stmt.executeQuery("SELECT username,password from energy_station.controlo_acessos where username ='"+user+"' and password = '"+password+"'");
+                        
+            //Percorre a base de dados a procura da informação e retorna a mesma
+            while (supervisorResult.next()) {
+             
+              this.userSupervisor = supervisorResult.getString("username");
+              this.passSupervisor = supervisorResult.getString("password");
+                
+            }
+             connection.close();
+        }
+        
+        //Caso exista algum erro, e lançada uma mensagem de excepção
+        catch (SQLException e){
+            
+            System.out.println("Não foi possível retornar valores");
+            
+            e.printStackTrace();
+            
+        }
+        
+    }
     
     public void connGetData (String energia){//Retorna informação relativa a ultima factura na tabela vendas, o valor unitário do combustivel selecionado,e o posto disponível
                  
@@ -247,6 +284,14 @@ public class Conn {
 
     public String getFaturaFinal() {
         return faturaFinal;
+    }
+
+    public String getUserSupervisor() {
+        return userSupervisor;
+    }
+
+    public String getPassSupervisor() {
+        return passSupervisor;
     }
     
    
