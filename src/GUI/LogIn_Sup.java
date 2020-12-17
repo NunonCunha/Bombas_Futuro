@@ -15,7 +15,12 @@ import javax.swing.JOptionPane;
  */
 public class LogIn_Sup extends javax.swing.JFrame {
 
-
+    Conn connection = new Conn();
+    
+    static String user;
+    static String password;
+    
+    
     /**
      * Creates new form LogIn
      */
@@ -38,6 +43,7 @@ public class LogIn_Sup extends javax.swing.JFrame {
         jlblPass = new javax.swing.JLabel();
         jtxtlblPass = new javax.swing.JTextField();
         jlblLogo = new javax.swing.JLabel();
+        jbttLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,35 +56,47 @@ public class LogIn_Sup extends javax.swing.JFrame {
         jlblPass.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jlblPass.setText("Password:");
 
+        jlblLogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\NCUNHA\\Desktop\\ATLÂNTICA\\2º Ano\\1º SEMESTRE\\LINGUAGEM DE PROGRAMAÇÃO\\Trabalho2_Modelo4_Type3\\Capture (1).png")); // NOI18N
+
+        jbttLogin.setText("Login");
+        jbttLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbttLoginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jlblLogo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlblMenuname)
-                .addContainerGap())
+                .addContainerGap(104, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblLogo)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jlblMenuname)))
+                .addGap(94, 94, 94))
             .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
+                .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jlblPass)
                     .addComponent(jlblUser))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtxtfldUser, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtxtlblPass, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jtxtfldUser)
+                    .addComponent(jtxtlblPass)
+                    .addComponent(jbttLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlblMenuname, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlblLogo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addComponent(jlblLogo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jlblMenuname, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxtfldUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlblUser))
@@ -86,12 +104,30 @@ public class LogIn_Sup extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblPass)
                     .addComponent(jtxtlblPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(86, 86, 86))
+                .addGap(28, 28, 28)
+                .addComponent(jbttLogin)
+                .addGap(36, 36, 36))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbttLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttLoginActionPerformed
+       user = jtxtfldUser.getText();
+       password = jtxtlblPass.getText();
+       
+       connection.connGetSupervisor(user, password);
+       
+       if(connection.getUserSupervisor() == null && connection.getPassSupervisor() == null){
+           JOptionPane.showMessageDialog(this, "Sem registo");
+       }
+       else{
+           new Supervisor().setVisible(true);
+           this.dispose();
+         
+     }
+    }//GEN-LAST:event_jbttLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,6 +166,7 @@ public class LogIn_Sup extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jbttLogin;
     private javax.swing.JLabel jlblLogo;
     private javax.swing.JLabel jlblMenuname;
     private javax.swing.JLabel jlblPass;

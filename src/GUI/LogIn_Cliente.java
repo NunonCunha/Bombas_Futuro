@@ -14,16 +14,11 @@ import javax.swing.JOptionPane;
  *
  * @author NCUNHA
  */
-public class LogIn_Cliente extends javax.swing.JFrame {
-
-    
+public class LogIn_Cliente extends javax.swing.JFrame {    
     
     Conn connection = new Conn();   
     
-     static String codigo;
-    
-    
-    
+     static String codigo;   
     
     /**
      * Creates new form LogIn_Cliente
@@ -106,19 +101,16 @@ public class LogIn_Cliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbttLoginClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttLoginClienteActionPerformed
-     
      codigo = jtxtLoginCliente.getText();
      
-     connection.connGetClientes(codigo);
-     //JOptionPane.showMessageDialog(this, connection.getNome());  
+     connection.connGetClientes(codigo); 
      
      if(connection.getNome() == null){
          JOptionPane.showMessageDialog(this, "Sem registo");
      }
      else{
-         JOptionPane.showMessageDialog(this, connection.getNome());
          new Client().setVisible(true);
-        this.dispose();
+         this.dispose();
      }   
      
         
