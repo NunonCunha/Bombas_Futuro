@@ -8,7 +8,7 @@ package GUI;
 import connections.Conn;
 import java.util.Random;
 import javax.swing.JOptionPane;
-import user.client;
+
 
 /**
  *
@@ -40,10 +40,27 @@ public class Client extends javax.swing.JFrame {
         //objecto para retornar o codigo de log in do cliente
         connection.connGetClientes(codigo.codigo);
         jlblClient.setText("Bem-Vindo/a "+connection.getNome()+" "+connection.getApelido());
-        jtextAreaCliente.append("Quantidade:" + totalAbastecer + "unidades" );
-        
+          
     }     
-      
+    
+    public void areaCliente(String energia, int totalAbastecer){
+        
+        jtextAreaCliente.setText("Energia: "+energia+"\nQuantidade:" + totalAbastecer + "unidades" );
+    }      
+    
+    public void enableButtons(){
+       jbttbotaoUm.setEnabled(true);
+       jbttbotaoCinco.setEnabled(true);
+       jbttbotaoDez.setEnabled(true);
+       jbttAtestar.setEnabled(true);        
+    }
+    
+    public void disableButtons(){
+       jbttbotaoUm.setEnabled(false);
+       jbttbotaoCinco.setEnabled(false);
+       jbttbotaoDez.setEnabled(false);
+       jbttAtestar.setEnabled(false);
+    }
     
     /**
      * Creates new form Client
@@ -52,6 +69,8 @@ public class Client extends javax.swing.JFrame {
 
         initComponents();
         labelName();
+        
+        disableButtons();
     }       
     
     /**
@@ -279,7 +298,12 @@ public class Client extends javax.swing.JFrame {
     
     
     private void jbttbotaoCincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttbotaoCincoActionPerformed
-         totalAbastecer +=botaoCincoValor;
+       
+        totalAbastecer +=botaoCincoValor;
+        
+        areaCliente(energia, totalAbastecer);
+        
+        jbttAtestar.setEnabled(false);
         
          JOptionPane.showConfirmDialog(rootPane, totalAbastecer); 
     }//GEN-LAST:event_jbttbotaoCincoActionPerformed
@@ -287,6 +311,10 @@ public class Client extends javax.swing.JFrame {
     
     private void jbttbotaoUmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttbotaoUmActionPerformed
         totalAbastecer +=botaoUmValor;
+        
+        areaCliente(energia, totalAbastecer);
+        
+        jbttAtestar.setEnabled(false);
         
          JOptionPane.showConfirmDialog(rootPane, totalAbastecer);        
         
@@ -299,7 +327,10 @@ public class Client extends javax.swing.JFrame {
         jbttGasoleo.setEnabled(false);
         jbttGas.setEnabled(false);
         jbttPlasma.setEnabled(false);
-        jbttHidro.setEnabled(false);
+        jbttHidro.setEnabled(false);    
+        
+        enableButtons();
+
     }//GEN-LAST:event_jbttGasolinaActionPerformed
 
     private void jbttGasoleoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttGasoleoActionPerformed
@@ -310,6 +341,8 @@ public class Client extends javax.swing.JFrame {
         jbttGasolina.setEnabled(false);
         jbttPlasma.setEnabled(false);
         jbttHidro.setEnabled(false);
+        
+        enableButtons();
     }//GEN-LAST:event_jbttGasoleoActionPerformed
 
     private void jbttEletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttEletActionPerformed
@@ -320,6 +353,8 @@ public class Client extends javax.swing.JFrame {
         jbttGasolina.setEnabled(false);
         jbttPlasma.setEnabled(false);
         jbttHidro.setEnabled(false);
+        
+        enableButtons();
     }//GEN-LAST:event_jbttEletActionPerformed
 
     private void jlblClientPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jlblClientPropertyChange
@@ -328,6 +363,10 @@ public class Client extends javax.swing.JFrame {
 
     private void jbttbotaoDezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttbotaoDezActionPerformed
         totalAbastecer +=botaoDezValor;
+        
+        areaCliente(energia, totalAbastecer);
+        
+        jbttAtestar.setEnabled(false);
         
          JOptionPane.showConfirmDialog(rootPane, totalAbastecer);
     }//GEN-LAST:event_jbttbotaoDezActionPerformed
@@ -352,6 +391,8 @@ public class Client extends javax.swing.JFrame {
         jbttGasolina.setEnabled(false);
         jbttPlasma.setEnabled(false);
         jbttHidro.setEnabled(false);
+        
+        enableButtons();
     }//GEN-LAST:event_jbttGasActionPerformed
 
     private void jbttPlasmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttPlasmaActionPerformed
@@ -362,6 +403,8 @@ public class Client extends javax.swing.JFrame {
         jbttGasolina.setEnabled(false);
         jbttGas.setEnabled(false);
         jbttHidro.setEnabled(false);
+        
+        enableButtons();
     }//GEN-LAST:event_jbttPlasmaActionPerformed
 
     private void jbttHidroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttHidroActionPerformed
@@ -372,6 +415,8 @@ public class Client extends javax.swing.JFrame {
         jbttGasolina.setEnabled(false);
         jbttPlasma.setEnabled(false);
         jbttGas.setEnabled(false);
+        
+        enableButtons();
     }//GEN-LAST:event_jbttHidroActionPerformed
 
     private void jbttAtestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttAtestarActionPerformed
@@ -389,9 +434,6 @@ public class Client extends javax.swing.JFrame {
        totalAbastecer = 0;
        energia = null;
        jtextAreaCliente.setText("");
-       jbttbotaoUm.setEnabled(true);
-       jbttbotaoCinco.setEnabled(true);
-       jbttbotaoDez.setEnabled(true);
        
         jbttElet.setEnabled(true);
         jbttGasoleo.setEnabled(true);
@@ -399,6 +441,10 @@ public class Client extends javax.swing.JFrame {
         jbttPlasma.setEnabled(true);
         jbttHidro.setEnabled(true);
         jbttGas.setEnabled(true);
+        
+        disableButtons();
+        
+        
     }//GEN-LAST:event_jbttLimparActionPerformed
 
     /**
