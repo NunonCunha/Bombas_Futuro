@@ -40,7 +40,7 @@ public class Client extends javax.swing.JFrame {
         //objecto para retornar o codigo de log in do cliente
         connection.connGetClientes(codigo.codigo);
         jlblClient.setText("Bem-Vindo/a "+connection.getNome()+" "+connection.getApelido());
-        jtextAreaCliente.setText("Quantidade:" +totalAbastecer + "unidades" );
+        jtextAreaCliente.append("Quantidade:" + totalAbastecer + "unidades" );
         
     }     
       
