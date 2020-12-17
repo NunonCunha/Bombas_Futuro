@@ -129,7 +129,7 @@
           <Font name="Tahoma" size="36" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\NCUNHA\Desktop\ATL&#xc2;NTICA\2&#xba; Ano\1&#xba; SEMESTRE\LINGUAGEM DE PROGRAMA&#xc7;&#xc3;O\Trabalho2_Modelo4_Type3\Capture (1).png"/>
+          <Image iconType="3" name="/imagem/Capture (1).png"/>
         </Property>
       </Properties>
     </Component>

@@ -48,7 +48,7 @@ public class Supervisor extends javax.swing.JFrame {
         setTitle("Manutenção");
 
         jlblApp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jlblApp.setIcon(new javax.swing.ImageIcon("C:\\Users\\NCUNHA\\Desktop\\ATLÂNTICA\\2º Ano\\1º SEMESTRE\\LINGUAGEM DE PROGRAMAÇÃO\\Trabalho2_Modelo4_Type3\\Capture (1).png")); // NOI18N
+        jlblApp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/Capture (1).png"))); // NOI18N
 
         jlblClient.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jlblClient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

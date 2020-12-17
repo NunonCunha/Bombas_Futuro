@@ -56,7 +56,7 @@ public class LogIn_Sup extends javax.swing.JFrame {
         jlblPass.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jlblPass.setText("Password:");
 
-        jlblLogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\NCUNHA\\Desktop\\ATLÂNTICA\\2º Ano\\1º SEMESTRE\\LINGUAGEM DE PROGRAMAÇÃO\\Trabalho2_Modelo4_Type3\\Capture (1).png")); // NOI18N
+        jlblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/Capture (1).png"))); // NOI18N
 
         jbttLogin.setText("Login");
         jbttLogin.addActionListener(new java.awt.event.ActionListener() {

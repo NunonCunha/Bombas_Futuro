@@ -102,7 +102,7 @@ public class Client extends javax.swing.JFrame {
         setTitle("Main");
 
         jlblApp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jlblApp.setIcon(new javax.swing.ImageIcon("C:\\Users\\NCUNHA\\Desktop\\ATLÂNTICA\\2º Ano\\1º SEMESTRE\\LINGUAGEM DE PROGRAMAÇÃO\\Trabalho2_Modelo4_Type3\\Capture (1).png")); // NOI18N
+        jlblApp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/Capture (1).png"))); // NOI18N
 
         jbttAtestar.setText("Atestar");
         jbttAtestar.setToolTipText("");

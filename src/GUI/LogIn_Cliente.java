@@ -63,7 +63,7 @@ public class LogIn_Cliente extends javax.swing.JFrame {
 
         jLabel1.setText("NIF:");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\NCUNHA\\Desktop\\ATLÂNTICA\\2º Ano\\1º SEMESTRE\\LINGUAGEM DE PROGRAMAÇÃO\\Trabalho2_Modelo4_Type3\\Capture (1).png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/Capture (1).png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
