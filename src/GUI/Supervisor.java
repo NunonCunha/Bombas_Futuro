@@ -26,11 +26,12 @@ public class Supervisor extends javax.swing.JFrame {
     private String bomba;
     
     public void setBomba(){
+        
         connection.setBomba(this.bomba);
         connection.valorTotalbomba();
         connection.quantidadeTotalBomba();        
-        connection.connGetDataSupervisor();        
-        jtextAreaSupervisor.setText("Bomba "+this.bomba+"\nValor total Vendido: "+connection.getValorTotalBomba()+"\nQuantidade total Abastecida: "+connection.getQuantidadeTotalBomba());
+        connection.connGetDataSupervisor(); 
+        jtextAreaSupervisor.setText("\nBomba "+this.bomba+"\nValor total Vendido: "+connection.getValorTotalBomba()+"\nQuantidade total Abastecida: "+connection.getQuantidadeTotalBomba());
     }
     
     /**
@@ -409,6 +410,6 @@ public class Supervisor extends javax.swing.JFrame {
     private javax.swing.JButton jbttTotal;
     private javax.swing.JLabel jlblApp;
     private javax.swing.JLabel jlblSupervisor;
-    private javax.swing.JTextArea jtextAreaSupervisor;
+    protected javax.swing.JTextArea jtextAreaSupervisor;
     // End of variables declaration//GEN-END:variables
 }

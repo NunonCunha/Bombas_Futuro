@@ -1,12 +1,18 @@
 
 package connections;
 
+import GUI.Supervisor;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.Vector;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -44,8 +50,8 @@ public class Conn {
     private int auxvalorUnitario;
     private int randomPosto;
     private String bomba;  
-    private String valorTotalBomba;
-    private String quantidadeTotalBomba;
+    private String valorTotalBomba ;
+    private String quantidadeTotalBomba ;
     private String totalValorPosto;
     private String totalQuantidadePosto;
    
@@ -55,12 +61,18 @@ public class Conn {
     private String queryQuantidadeTotalBomba; 
     private String queryValorTotalPosto;
     private String queryQuantidadeTotalPosto;
+    private String energia;
     
     //atributos para supervisor
     private String userSupervisor;
     private String passSupervisor;
        
-    
+    /*
+    //Criação de listas para retorno de diversos valores da BD
+    List<String> list1 = new ArrayList();    
+    String value1 ;
+    */
+ 
     //-----------------------------------------------------------Connections----------------------------------------------------------------------------------------------------
         
     public void connGetClientes (String nif){//retorna os atributos do Cliente     
@@ -198,21 +210,38 @@ public class Conn {
             ResultSet totalBombaResult = stmt.executeQuery(this.queryValorTotalBomba);
                         
             //Percorre a base de dados a procura da informação e retorna a mesma
-            while (totalBombaResult.next()) {
              
-              this.valorTotalBomba = totalBombaResult.getString("SUM(total)");
-                
+            while (totalBombaResult.next()) {             
+              this.valorTotalBomba = totalBombaResult.getString("SUM(total)");                
             }    
             
             ResultSet quantidadeBombaResult = stmt.executeQuery(this.queryQuantidadeTotalBomba);
                         
             //Percorre a base de dados a procura da informação e retorna a mesma
-            while (quantidadeBombaResult.next()) {
-             
-              this.quantidadeTotalBomba = quantidadeBombaResult.getString("SUM(quantidade)");
-                
+            while (quantidadeBombaResult.next()) {             
+              this.quantidadeTotalBomba = quantidadeBombaResult.getString("SUM(quantidade)");                
+            } 
+            
+            /*                
+                //acesso as listas para guardar valores
+                value1 = totalBombaResult.getString("tipo_energia");
+                list1.add(value1);               
+                value1 = totalBombaResult.getString("SUM(valor_unidade)");
+                list1.add(value1);                
+                value1 = totalBombaResult.getString("SUM(quantidade)");
+                list1.add(value1);
+
             }
-                     
+
+            int j = list1.size();
+            for(int i = 0; i < j ; i++){
+
+                    System.out.println("\nEnergia: "+list1.get(++i)+" \nValor: "+list1.get(++i)+" \nQuantidade: "+list1.get(++i));                
+            
+            }
+            
+            */   
+                 
              connection.close();
         }
         
@@ -295,7 +324,8 @@ public class Conn {
     } 
     
     //---------------------------------------------------------------Métodos para manipulação---------------------------------------------------------------------------------------------------------------
-       
+
+    
     public void insertVendas (){    
         
         incrementaFatura();
@@ -307,6 +337,7 @@ public class Conn {
     }   
     
     public void valorTotalbomba(){
+        //this.queryValorTotalBomba = "SELECT tipo_energia, SUM(valor_unidade), SUM(quantidade) FROM energy_station.vendas where posto_abs = "+this.bomba+" group by tipo_energia;";
         this.queryValorTotalBomba = "SELECT SUM(total) FROM energy_station.vendas WHERE posto_abs ="+this.bomba+"";
     }
     
@@ -419,6 +450,13 @@ public class Conn {
     public String getTotalQuantidadePosto() {
         return totalQuantidadePosto;
     }
-      
+/*
+    public String[] getList1() {
+        
+            
+        return data[];
+    }
+*/
+    
    
 }

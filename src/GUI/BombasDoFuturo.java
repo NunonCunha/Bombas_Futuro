@@ -35,9 +35,19 @@ public class BombasDoFuturo extends javax.swing.JFrame {
 
         jbttCliente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbttCliente.setText("Cliente");
+        jbttCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbttClienteActionPerformed(evt);
+            }
+        });
 
         jbttSupervisor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbttSupervisor.setText("Supervisor");
+        jbttSupervisor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbttSupervisorActionPerformed(evt);
+            }
+        });
 
         jlblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/Capture (1).png"))); // NOI18N
 
@@ -70,7 +80,18 @@ public class BombasDoFuturo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbttSupervisorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttSupervisorActionPerformed
+        new LogIn_Sup().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbttSupervisorActionPerformed
+
+    private void jbttClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbttClienteActionPerformed
+        new LogIn_Cliente().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbttClienteActionPerformed
 
     /**
      * @param args the command line arguments
